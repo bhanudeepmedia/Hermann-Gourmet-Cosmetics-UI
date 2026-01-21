@@ -1,110 +1,23 @@
 [
     {
         "name": "theme_info",
-        "theme_name": "Hermann Luxury",
-        "theme_author": "Antigravity",
-        "theme_version": "3.0.0"
+        "theme_name": "Hermann Reborn",
+        "theme_version": "1.0.0"
     },
     {
-        "name": "Colors & Style",
+        "name": "Colors",
         "settings": [
             {
-                "type": "header",
-                "content": "Brand Palette"
-            },
-            {
                 "type": "color",
-                "id": "color_background",
-                "label": "Main Background",
+                "id": "bg_color",
+                "label": "Background",
                 "default": "#FDFBF7"
             },
             {
                 "type": "color",
-                "id": "color_text",
-                "label": "Primary Text (Dark Green)",
+                "id": "text_color",
+                "label": "Text",
                 "default": "#263112"
-            },
-            {
-                "type": "color",
-                "id": "color_accent",
-                "label": "Accent (Terracotta)",
-                "default": "#884F4F"
-            },
-            {
-                "type": "color",
-                "id": "color_secondary",
-                "label": "Secondary (Taupe)",
-                "default": "#866B67"
-            },
-            {
-                "type": "header",
-                "content": "Buttons"
-            },
-            {
-                "type": "color",
-                "id": "btn_bg",
-                "label": "Button Background",
-                "default": "#263112"
-            },
-            {
-                "type": "color",
-                "id": "btn_text",
-                "label": "Button Text",
-                "default": "#FFFFFF"
-            },
-            {
-                "type": "header",
-                "content": "Mobile Menu"
-            },
-            {
-                "type": "color",
-                "id": "mobile_menu_bg",
-                "label": "Drawer Background",
-                "default": "#FDFBF7"
-            },
-            {
-                "type": "color",
-                "id": "mobile_menu_text",
-                "label": "Drawer Text",
-                "default": "#263112"
-            }
-        ]
-    },
-    {
-        "name": "Typography",
-        "settings": [
-            {
-                "type": "font_picker",
-                "id": "font_heading",
-                "label": "Heading Font",
-                "default": "serif"
-            },
-            {
-                "type": "font_picker",
-                "id": "font_body",
-                "label": "Body Font",
-                "default": "sans-serif"
-            },
-            {
-                "type": "range",
-                "id": "font_scale",
-                "min": 90,
-                "max": 120,
-                "step": 5,
-                "unit": "%",
-                "label": "Font Scale",
-                "default": 100
-            }
-        ]
-    },
-    {
-        "name": "Layout",
-        "settings": [
-            {
-                "type": "checkbox",
-                "id": "enable_animations",
-                "label": "Enable Scroll Animations",
-                "default": true
             }
         ]
     }

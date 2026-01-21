@@ -1,97 +1,23 @@
 <!doctype html>
-<html lang="{{ request.locale.iso_code }}">
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="theme-color" content="{{ settings.color_background }}">
-    <link rel="canonical" href="{{ canonical_url }}">
-
-    {%- if settings.favicon != blank -%}
-      <link rel="icon" type="image/png" href="{{ settings.favicon | img_url: '32x32' }}">
-    {%- endif -%}
-
-    <title>{{ page_title }}{% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}</title>
-
-    {% if page_description %}
-      <meta name="description" content="{{ page_description | escape }}">
-    {% endif %}
-
-    {% render 'meta-tags' %}
-
-    <!-- Google Fonts Fallback -->
+    <title>{{ page_title | default: shop.name }}</title>
+    {{ content_for_header }}
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
-
-    {{ content_for_header }}
-
-    <!-- CORE STYLES (Static - Never Breaks) -->
     {{ 'base.css' | asset_url | stylesheet_tag }}
-    
-    <!-- CUSTOM STYLES (Dynamic - Colors/Fonts) -->
-    {{ 'custom.css' | asset_url | stylesheet_tag }}
-    
-    <script src="{{ 'script.js' | asset_url }}" defer="defer"></script>
-
-    <style>
-      :root {
-        --page-width: {{ settings.page_width | default: 1600 }}px;
-        --c-text: #FDFBF7; /* Cream Text Default for Dark Mode */
-        --c-bg: #263112; /* Dark Olive Background */
-        --font-heading: 'Fraunces', serif;
-        --font-body: 'Outfit', sans-serif;
-      }
-      
-      /* FORCE DARK OLIVE THEME (Zielinski Style) */
-      body { background-color: #FDFBF7; color: #263112; } /* Cream Body */
-
-      /* HEADER FORCE */
-      .site-header { background-color: #263112 !important; color: white !important; }
-      .header-bar a, .header-bar button, .header-bar i, .header-bar span { color: white !important; }
-      .logo-img { filter: brightness(0) invert(1) !important; }
-
-      /* FOOTER FORCE */
-      .site-footer { background-color: #263112 !important; color: #FDFBF7 !important; }
-      .site-footer a, .site-footer h4, .site-footer p { color: #FDFBF7 !important; }
-      .site-footer input { color: white !important; border-bottom: 1px solid rgba(255,255,255,0.3) !important; }
-      
-      /* PRODUCT CARD FORCE (Minimalist) */
-      .product-card { background: transparent !important; box-shadow: none !important; border: none !important; }
-      .product-media img { aspect-ratio: 3/4 !important; object-fit: cover !important; border-radius: 0 !important; }
-      .product-info h3 { font-family: 'Fraunces', serif !important; text-transform: none !important; font-size: 1.1rem !important; margin-top: 1rem !important; }
-      .product-price { color: #555 !important; font-weight: 400 !important; }
-      .badge { background: #263112 !important; color: white !important; border-radius: 0 !important; }
-
-      /* BUTTONS */
-      .btn-primary, .btn-secondary { border-radius: 2px !important; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
-    </style>
   </head>
-
-  <body class="template-{{ template.name }}">
-    
-    <!-- Announcement Bar -->
-    {% section 'announcement-bar' %}
-
-    <!-- Navigation -->
-    {% section 'main-header' %}
-
+  <body>
+    {% section 'header' %}
     <main role="main" id="MainContent">
       {{ content_for_layout }}
     </main>
-
-    <!-- Footer -->
     {% section 'footer' %}
-    
-    <!-- Magic Cursor -->
-    {% render 'cursor-effect' %}
-
   </body>
 </html>

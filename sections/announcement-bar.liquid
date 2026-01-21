@@ -1,17 +1,9 @@
-<div class="announcement-bar">
-  <span>{{ section.settings.announcement_text }}</span>
+<div class="container section">
+   {% for product in collections['all'].products %}
+      <div>{{ product.title }}</div>
+   {% endfor %}
 </div>
 
 {% schema %}
-{
-  "name": "Announcement Bar",
-  "settings": [
-    {
-      "type": "text",
-      "id": "announcement_text",
-      "label": "Announcement Text",
-      "default": "✨ Free Shipping on orders over €50 • Freshly Batch Cooked Today! ✨"
-    }
-  ]
-}
+{ "name": "Announcement Bar", "settings": [], "presets": [{"name": "Announcement Bar"}] }
 {% endschema %}

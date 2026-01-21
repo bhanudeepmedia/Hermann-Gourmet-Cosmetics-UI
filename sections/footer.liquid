@@ -1,116 +1,18 @@
 <footer class="site-footer">
   <div class="container">
-    <div class="footer-grid">
-      
-      <!-- 1. Brand -->
-      <div class="footer-col brand-col">
-         {% if section.settings.logo %}
-           <img src="{{ section.settings.logo | img_url: '300x' }}" alt="{{ shop.name }}" class="footer-logo">
-         {% else %}
-           <h3 class="footer-logo-text">{{ shop.name }}</h3>
-         {% endif %}
-         <div class="footer-bio">{{ section.settings.bio }}</div>
-         
-         <div class="social-icons">
-            <a href="#"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#"><i class="fa-brands fa-pinterest"></i></a>
-            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
-         </div>
-      </div>
-
-      <!-- 2. Shop Menu -->
-      <div class="footer-col links-col">
-         <h4>Shop</h4>
-         <ul>
-           {% for link in linklists[section.settings.menu_1].links %}
-             <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-           {% endfor %}
-         </ul>
-      </div>
-
-      <!-- 3. Support Menu -->
-      <div class="footer-col links-col">
-         <h4>Support</h4>
-         <ul>
-           {% for link in linklists[section.settings.menu_2].links %}
-             <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-           {% endfor %}
-         </ul>
-      </div>
-
-      <!-- 4. Newsletter -->
-      <div class="footer-col newsletter-col">
-         <h4>Stay in the Loop</h4>
-         <p>Join our family for exclusive recipes and offers.</p>
-         {% form 'customer' %}
-           <input type="hidden" name="contact[tags]" value="newsletter">
-           <div class="newsletter-form">
-             <input type="email" name="contact[email]" placeholder="Your email address" required>
-             <button type="submit">Join</button>
-           </div>
-         {% endform %}
-         <p class="small-disclaimer">By signing up, you agree to our Terms.</p>
-      </div>
-
+    <div style="margin-bottom:2rem;">
+      <h2 style="font-size:2rem; margin-bottom:0.5rem;">HERMANN</h2>
+      <p style="opacity:0.7;">Handmade in Cyprus</p>
     </div>
-
-    <div class="footer-bottom">
-       <div class="copyright">
-         &copy; {{ 'now' | date: "%Y" }} {{ shop.name }}. Handcrafted in Cyprus.
-       </div>
-       <div class="payment-icons">
-          <i class="fa-brands fa-cc-visa"></i>
-          <i class="fa-brands fa-cc-mastercard"></i>
-          <i class="fa-brands fa-cc-amex"></i>
-          <i class="fa-brands fa-cc-paypal"></i>
-          <i class="fa-brands fa-apple-pay"></i>
-       </div>
+    <div style="display:flex; justify-content:center; gap:2rem; margin-bottom:2rem;">
+      <a href="/search">Search</a>
+      <a href="/policies/privacy-policy">Privacy</a>
+      <a href="/pages/contact">Contact</a>
     </div>
+    <p style="font-size:0.8rem; opacity:0.5;">&copy; 2024 Hermann Gourmet Cosmetics</p>
   </div>
 </footer>
 
-<style>
-.site-footer { background: #263112; color: #FDFBF7; padding: 5rem 0 2rem; }
-.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 2fr; gap: 4rem; margin-bottom: 4rem; }
-
-.footer-col h4 { color: #FFFFFF; font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9; }
-.footer-col ul { list-style: none; padding: 0; }
-.footer-col li { margin-bottom: 0.8rem; }
-.footer-col a { color: rgba(253, 251, 247, 0.7); text-decoration: none; transition: 0.2s; font-size: 0.95rem; }
-.footer-col a:hover { color: #FFFFFF; padding-left: 5px; }
-
-.brand-col .footer-bio { margin-bottom: 1.5rem; color: rgba(253, 251, 247, 0.6); line-height: 1.6; }
-.footer-logo { max-width: 150px; margin-bottom: 1.5rem; filter: brightness(0) invert(1); }
-
-.social-icons { display: flex; gap: 1rem; }
-.social-icons a { font-size: 1.2rem; color: #FFFFFF; opacity: 0.8; }
-.social-icons a:hover { color: #FFFFFF; opacity: 1; transform: translateY(-3px); }
-
-.newsletter-form { display: flex; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 5px; margin-top: 1rem; }
-.newsletter-form input { background: none; border: none; color: white; width: 100%; outline: none; }
-.newsletter-form input::placeholder { color: rgba(255,255,255,0.4); }
-.newsletter-form button { background: none; border: none; color: #FFFFFF; text-transform: uppercase; font-weight: 700; cursor: pointer; letter-spacing: 1px; }
-.small-disclaimer { font-size: 0.7rem; color: rgba(253, 251, 247, 0.4); margin-top: 10px; }
-
-.footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; }
-.copyright { font-size: 0.8rem; color: rgba(253, 251, 247, 0.4); }
-.payment-icons { display: flex; gap: 1rem; font-size: 1.5rem; color: rgba(253, 251, 247, 0.5); }
-
-@media(max-width: 900px) {
-  .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
-  .footer-bottom { flex-direction: column; gap: 1rem; }
-}
-</style>
-
 {% schema %}
-{
-  "name": "Footer",
-  "settings": [
-    { "type": "image_picker", "id": "logo", "label": "Logo" },
-    { "type": "textarea", "id": "bio", "label": "Bio Text", "default": "Artisanal skincare cooked with ❤️ in Cyprus." },
-    { "type": "link_list", "id": "menu_1", "label": "Shop Menu", "default": "main-menu" },
-    { "type": "link_list", "id": "menu_2", "label": "Support Menu", "default": "footer" }
-  ]
-}
+{ "name": "Footer", "settings": [] }
 {% endschema %}
