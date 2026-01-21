@@ -1,131 +1,113 @@
-try {
-    // 1. Initialize Lenis for Smooth Scroll
-    // Wrap in try-catch in case external script fails to load
-    const lenis = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        smoothWheel: true,
+// 1. Initialize GSAP ScrollTrigger
+gsap.registerPlugin(ScrollTrigger);
+
+// 2. Navbar Scroll Effect
+const nav = document.querySelector('.sticky-nav');
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+        nav.style.padding = '0.5rem 5%';
+        nav.style.background = 'rgba(255, 255, 255, 0.98)';
+        nav.style.boxShadow = '0 5px 20px rgba(0,0,0,0.05)';
+    } else {
+        nav.style.padding = '1rem 5%';
+        nav.style.background = 'rgba(253, 251, 247, 0.95)';
+        nav.style.boxShadow = 'none';
+    }
+});
+
+// 3. Hero Animations (Entrance)
+window.onload = () => {
+    const tl = gsap.timeline();
+
+    tl.from(".hero-text > *", {
+        y: 30,
+        opacity: 0,
+        stagger: 0.1,
+        duration: 1,
+        ease: "power2.out"
+    })
+        .from(".hero-main-img", {
+            scale: 0.8,
+            opacity: 0,
+            duration: 1.2,
+            ease: "elastic.out(1, 0.5)"
+        }, "-=0.8")
+        .from(".hero-small-img", {
+            x: 50,
+            opacity: 0,
+            duration: 1
+        }, "-=1")
+        .from(".blob-bg", {
+            scale: 0,
+            duration: 1.5,
+            ease: "power3.out"
+        }, "-=1.5");
+};
+
+// 4. Product Stagger Reveal
+gsap.from(".product-card-fun", {
+    y: 50,
+    opacity: 0,
+    duration: 0.8,
+    stagger: 0.1,
+    ease: "power2.out",
+    scrollTrigger: {
+        trigger: ".shop-section",
+        start: "top 70%"
+    }
+});
+
+// 5. Process Steps Connector
+gsap.from(".step", {
+    x: -30,
+    opacity: 0,
+    stagger: 0.2,
+    duration: 0.8,
+    scrollTrigger: {
+        trigger: ".process-steps",
+        start: "top 80%"
+    }
+});
+
+// 6. Blog Reveal
+gsap.from(".blog-post", {
+    y: 50,
+    opacity: 0,
+    stagger: 0.2,
+    duration: 1,
+    scrollTrigger: {
+        trigger: ".blog-section",
+        start: "top 75%"
+    }
+});
+
+// 7. Interactive Category Pills
+const pills = document.querySelectorAll('.pill');
+pills.forEach(pill => {
+    pill.addEventListener('click', (e) => {
+        e.preventDefault();
+        pills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        // In a real app, this would filter the grid
     });
+});
 
-    function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
+// 8. Mobile Menu Toggle
+const toggle = document.querySelector('.mobile-toggle');
+const navLinks = document.querySelector('.nav-links');
+
+toggle.addEventListener('click', () => {
+    if (navLinks.style.display === 'flex') {
+        navLinks.style.display = 'none';
+    } else {
+        navLinks.style.display = 'flex';
+        navLinks.style.flexDirection = 'column';
+        navLinks.style.position = 'absolute';
+        navLinks.style.top = '100%';
+        navLinks.style.left = '0';
+        navLinks.style.width = '100%';
+        navLinks.style.background = 'white';
+        navLinks.style.padding = '2rem';
+        navLinks.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
     }
-    requestAnimationFrame(raf);
-
-    // 2. Register GSAP Plugins (ScrollTrigger only)
-    gsap.registerPlugin(ScrollTrigger);
-
-    // 3. Custom Cursor Logic
-    const cursorDot = document.querySelector('.cursor-dot');
-    const cursorFollower = document.querySelector('.cursor-follower');
-
-    if (cursorDot && cursorFollower) {
-        document.addEventListener('mousemove', (e) => {
-            gsap.to(cursorDot, { x: e.clientX, y: e.clientY, duration: 0 });
-            gsap.to(cursorFollower, { x: e.clientX, y: e.clientY, duration: 0.1 });
-        });
-    }
-
-    // 4. Intro Sequence (Robust Version)
-    window.addEventListener('load', () => {
-        const overlay = document.querySelector('.intro-overlay');
-        const overlayText = document.querySelector('.intro-counter');
-        const overlayLine = document.querySelector('.intro-line');
-
-        // Force remove function
-        const removeOverlay = () => {
-            if (overlay) {
-                gsap.to(overlay, {
-                    yPercent: -100,
-                    duration: 1,
-                    ease: 'power4.inOut',
-                    onComplete: () => { overlay.style.display = 'none'; }
-                });
-            }
-            // Animate Hero Elements
-            gsap.from('.hero-title span', {
-                y: 100, opacity: 0, stagger: 0.2, duration: 1.5, ease: 'power3.out', delay: 0.5
-            });
-            gsap.from('.hero-bottom-row', { opacity: 0, duration: 1, delay: 1 });
-        };
-
-        if (overlayText && overlayLine) {
-            let counter = { val: 0 };
-            gsap.to(counter, {
-                val: 100,
-                duration: 2,
-                onUpdate: () => {
-                    overlayText.innerText = Math.floor(counter.val) + "%";
-                },
-                onComplete: removeOverlay
-            });
-            gsap.to(overlayLine, { width: '100%', duration: 1.5 });
-        } else {
-            console.warn("Loader elements missing, forcing entry");
-            removeOverlay();
-        }
-    });
-
-    // 5. Horizontal Scroll (Museum)
-    const sections = gsap.utils.toArray('.museum-panel');
-    if (sections.length > 0) {
-        gsap.to(sections, {
-            xPercent: -100 * (sections.length - 1),
-            ease: "none",
-            scrollTrigger: {
-                trigger: ".museum-section",
-                pin: true,
-                scrub: 1,
-                // Adjust speed: Make it scroll longer for smoother feel
-                end: "+=" + (sections.length * 500),
-            }
-        });
-    }
-
-    // 6. Parallax Effect (Simple)
-    const parallaxImg = document.querySelector(".parallax-layer.bg img");
-    if (parallaxImg) {
-        gsap.to(parallaxImg, {
-            yPercent: 20,
-            ease: "none",
-            scrollTrigger: {
-                trigger: ".immersive-story",
-                scrub: true
-            }
-        });
-    }
-
-    // 7. 3D Tilt Effect on Cards
-    document.querySelectorAll('.card-3d').forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-
-            // Limit rotation to avoid glitches
-            const rotateX = ((y - centerY) / centerY) * -10;
-            const rotateY = ((x - centerX) / centerX) * 10;
-
-            const inner = card.querySelector('.card-3d-inner');
-            if (inner) {
-                inner.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-            }
-        });
-
-        card.addEventListener('mouseleave', () => {
-            const inner = card.querySelector('.card-3d-inner');
-            if (inner) {
-                inner.style.transform = `perspective(1000px) rotateX(0) rotateY(0)`;
-            }
-        });
-    });
-
-} catch (e) {
-    console.error("Critical JS Error:", e);
-    // If anything fatal happens, force hide the overlay so user can at least see the site
-    const overlay = document.querySelector('.intro-overlay');
-    if (overlay) overlay.style.display = 'none';
-}
+});

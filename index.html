@@ -4,129 +4,267 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hermann Global | Cinematic Experience</title>
+    <title>Hermann Gourmet Cosmetics | Freshly Cooked Joy</title>
 
-    <!-- GSAP (Standard Plugins Only) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-    <!-- Lenis Smooth Scroll -->
-    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
-
-    <!-- Fonts -->
+    <!-- Fonts: Fraunces (Friendly Serif) + Outfit (Modern Sans) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Outfit:wght@300;400;600&display=swap"
         rel="stylesheet">
 
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
     <link rel="stylesheet" href="styles.css">
-
-    <style>
-        /* FALLBACK: If JS fails, these animations ensure content is visible */
-        .intro-overlay {
-            /* Force hide after 4 seconds if JS doesn't do it */
-            animation: safetyFadeOut 0.5s linear 3.5s forwards;
-        }
-
-        @keyframes safetyFadeOut {
-            to {
-                opacity: 0;
-                pointer-events: none;
-                visibility: hidden;
-            }
-        }
-    </style>
 </head>
 
-<body class="is-loading">
+<body>
 
-    <!-- Cinematic Loader -->
-    <div class="intro-overlay">
-        <div class="intro-counter">0%</div>
-        <div class="intro-line"></div>
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        <span>✨ Free Shipping on orders over €50 • Freshly Batch Cooked Today! ✨</span>
     </div>
 
-    <!-- Custom Cursor -->
-    <div class="cursor-follower"></div>
-    <div class="cursor-dot"></div>
-
-    <main class="smooth-wrapper">
-
-        <!-- Hero Section -->
-        <section class="hero-cinematic">
-            <div class="hero-video-container">
-                <div class="hero-img-zoom">
-                    <img src="royal-hero.png" alt="Cinematic Statue">
-                </div>
-                <div class="overlay-gradient"></div>
+    <!-- Navigation -->
+    <nav class="sticky-nav">
+        <div class="nav-container">
+            <div class="logo">
+                Hermann<span class="dot">.</span>
             </div>
 
-            <div class="hero-content">
-                <div class="brand-tag">Est. 2014 &mdash; Cyprus</div>
-                <h1 class="hero-title">
-                    <span class="reveal-text">Alchemy</span><br>
-                    <span class="reveal-text">Reimagined</span>
-                </h1>
-                <div class="hero-bottom-row">
-                    <div class="scroll-prompt">
-                        <div class="circle-text">
-                            <!-- Simple SVG rotation text -->
-                            <svg viewBox="0 0 100 100">
-                                <path id="curve" d="M 25, 50 a 25,25 0 1,1 50,0 a 25,25 0 1,1 -50,0" fill="none" />
-                                <text>
-                                    <textPath href="#curve">SCROLL TO EXPLORE • DISCOVER •</textPath>
-                                </text>
-                            </svg>
-                        </div>
-                        <div class="arrow-down">↓</div>
+            <ul class="nav-links">
+                <li><a href="#shop" class="active">Face</a></li>
+                <li><a href="#body">Body</a></li>
+                <li><a href="#sets">Gift Sets</a></li>
+                <li><a href="#journal">Journal</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+
+            <div class="nav-icons">
+                <a href="#"><i class="fa-regular fa-user"></i></a>
+                <a href="#" class="cart-wrapper">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+
+            <div class="mobile-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+
+        <!-- Hero Section: Warm & Welcoming -->
+        <section class="hero-joy">
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <div class="hero-badge">Since 2014</div>
+                    <h1>Skincare so fresh,<br>you could <em>eat it</em>.</h1>
+                    <p>Handmade in Cyprus using grandmother’s secret recipes and the finest organic botanicals. No
+                        nasties, just joy.</p>
+                    <div class="btn-group">
+                        <a href="#shop" class="btn-primary">Shop The Menu</a>
+                        <a href="#video" class="btn-secondary"><i class="fa-solid fa-play"></i> Watch the Magic</a>
+                    </div>
+                    <div class="trust-indicators">
+                        <span><i class="fa-solid fa-check"></i> PETA Approved</span>
+                        <span><i class="fa-solid fa-check"></i> 100% Natural</span>
+                    </div>
+                </div>
+                <div class="hero-visual-collage">
+                    <div class="blob-bg"></div>
+                    <img src="vintage-podium.png" alt="Hero Product" class="hero-main-img floating">
+                    <img src="ingredients-banner.png" alt="Ingredients" class="hero-small-img floating-delayed">
+                    <div class="sticker-badge">
+                        <svg viewBox="0 0 100 100" class="rotate-text">
+                            <path id="curve" d="M 25, 50 a 25,25 0 1,1 50,0 a 25,25 0 1,1 -50,0" fill="transparent" />
+                            <text>
+                                <textPath href="#curve">FRESH • NATURAL • ORGANIC •</textPath>
+                            </text>
+                        </svg>
+                        <div class="sticker-center">🌿</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Horizontal "Museum" Section -->
-        <section class="museum-section">
-            <div class="museum-track">
-                <div class="museum-panel text-panel">
-                    <h2>The <br>Collection</h2>
-                    <p>Grandmother's recipes, elevated for the modern ritual.</p>
+        <!-- Categories / Quick Links -->
+        <section class="category-pills-section">
+            <div class="container">
+                <h3>What are you craving?</h3>
+                <div class="category-pills">
+                    <a href="#" class="pill active">All</a>
+                    <a href="#" class="pill">Moisturizers</a>
+                    <a href="#" class="pill">Serums</a>
+                    <a href="#" class="pill">Body Scrubs</a>
+                    <a href="#" class="pill">Soaps</a>
+                    <a href="#" class="pill">Gifts</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Best Sellers Grid -->
+        <section class="section shop-section" id="shop">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Fresh From The Kitchen</h2>
+                    <a href="#" class="link-arrow">View All Products →</a>
                 </div>
 
-                <!-- Card 1 -->
-                <div class="museum-panel product-panel">
-                    <div class="card-3d">
-                        <div class="card-3d-inner">
-                            <div class="card-front">
-                                <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=1887&auto=format&fit=crop"
-                                    alt="Cream">
-                                <h3>Bee Ageless</h3>
-                            </div>
+                <div class="product-grid">
+                    <!-- Product 1 -->
+                    <div class="product-card-fun">
+                        <div class="p-image">
+                            <span class="tag-new">New Batch</span>
+                            <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=1887&auto=format&fit=crop"
+                                alt="Cream">
+                            <button class="quick-add"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                        <div class="p-info">
+                            <div class="stars">★★★★★</div>
+                            <h3>Bee Ageless Face Cream</h3>
+                            <p>With Royal Jelly & Honey</p>
+                            <div class="price">€45.00</div>
+                        </div>
+                    </div>
+
+                    <!-- Product 2 -->
+                    <div class="product-card-fun">
+                        <div class="p-image">
+                            <span class="tag-bestseller">Best Seller</span>
+                            <img src="https://images.unsplash.com/photo-1608248597279-f99d160bfbc8?q=80&w=2670&auto=format&fit=crop"
+                                alt="Scrub">
+                            <button class="quick-add"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                        <div class="p-info">
+                            <div class="stars">★★★★★</div>
+                            <h3>Golden Berry Scrub</h3>
+                            <p>Exfoliating Pollen Polish</p>
+                            <div class="price">€32.00</div>
+                        </div>
+                    </div>
+
+                    <!-- Product 3 -->
+                    <div class="product-card-fun">
+                        <div class="p-image">
+                            <img src="https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?q=80&w=1887&auto=format&fit=crop"
+                                alt="Balm">
+                            <button class="quick-add"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                        <div class="p-info">
+                            <div class="stars">★★★★★</div>
+                            <h3>Velvet Rose Balm</h3>
+                            <p>Damask Rose Body Butter</p>
+                            <div class="price">€38.00</div>
+                        </div>
+                    </div>
+
+                    <!-- Product 4 -->
+                    <div class="product-card-fun">
+                        <div class="p-image">
+                            <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?q=80&w=1887&auto=format&fit=crop"
+                                alt="Oil">
+                            <button class="quick-add"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                        <div class="p-info">
+                            <div class="stars">★★★★☆</div>
+                            <h3>Midnight Repair Oil</h3>
+                            <p>Overnight Recovery</p>
+                            <div class="price">€29.00</div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <!-- Card 2 -->
-                <div class="museum-panel product-panel">
-                    <div class="card-3d">
-                        <div class="card-3d-inner">
-                            <div class="card-front">
-                                <img src="https://images.unsplash.com/photo-1608248597279-f99d160bfbc8?q=80&w=2670&auto=format&fit=crop"
-                                    alt="Scrub">
-                                <h3>Golden Scrub</h3>
+        <!-- Fun Process Section -->
+        <section class="process-section section" style="background-color: #F8F5F2;">
+            <div class="container">
+                <div class="process-grid">
+                    <div class="process-text">
+                        <span class="eyebrow">Our Method</span>
+                        <h2>We Don't Manufacture.<br>We <span class="highlight-word">Cook</span>.</h2>
+                        <p>Imagine a cosmetic brand that treats skincare like a 5-star meal. We source ingredients from
+                            local farmers, mix them in small batches, and ship them fresh. It's slow beauty, made for
+                            you.</p>
+
+                        <div class="process-steps">
+                            <div class="step">
+                                <div class="icon-circle"><i class="fa-solid fa-seedling"></i></div>
+                                <div>
+                                    <h4>Pick</h4>
+                                    <p>Hand-selected herbs.</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="icon-circle"><i class="fa-solid fa-mortar-pestle"></i></div>
+                                <div>
+                                    <h4>Blend</h4>
+                                    <p>Traditional recipes.</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="icon-circle"><i class="fa-solid fa-gift"></i></div>
+                                <div>
+                                    <h4>Serve</h4>
+                                    <p>Fresh to your door.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div class="process-image-stack">
+                        <img src="ingredients-banner.png" class="stack-1" alt="Herbs">
+                        <img src="heritage-story.png" class="stack-2" alt="Mixing">
+                    </div>
                 </div>
+            </div>
+        </section>
 
-                <!-- Card 3 -->
-                <div class="museum-panel product-panel">
-                    <div class="card-3d">
-                        <div class="card-3d-inner">
-                            <div class="card-front">
-                                <img src="https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?q=80&w=1887&auto=format&fit=crop"
-                                    alt="Balm">
-                                <h3>Velvet Rose</h3>
+        <!-- Testimonials (Playful) -->
+        <section class="section">
+            <div class="container">
+                <h2 class="text-center">Love Letters</h2>
+                <div class="testimonial-slider-fun">
+                    <div class="t-card">
+                        <div class="quote-icon">“</div>
+                        <p>Finally, a brand that doesn't feel clinical! The scrub smells exactly like my grandmother's
+                            garden. Pure nostalgia in a jar.</p>
+                        <div class="user-profile">
+                            <div class="avatar">EM</div>
+                            <div>
+                                <strong>Elena M.</strong>
+                                <span>Verified Buyer</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="t-card">
+                        <div class="quote-icon">“</div>
+                        <p>My skin has never felt this soft. You can tell it's made with love and not just mass-produced
+                            in a factory.</p>
+                        <div class="user-profile">
+                            <div class="avatar">SJ</div>
+                            <div>
+                                <strong>Sarah J.</strong>
+                                <span>Verified Buyer</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="t-card">
+                        <div class="quote-icon">“</div>
+                        <p>The packaging, the smell, the texture... everything is perfect. Hermann is my new favorite
+                            ritual.</p>
+                        <div class="user-profile">
+                            <div class="avatar">AK</div>
+                            <div>
+                                <strong>Anna K.</strong>
+                                <span>Verified Buyer</span>
                             </div>
                         </div>
                     </div>
@@ -134,35 +272,101 @@
             </div>
         </section>
 
-        <!-- Immersive Story (Parallax) -->
-        <section class="immersive-story">
-            <div class="parallax-layer bg">
-                <img src="ingredients-banner.png" alt="Ingredients">
+        <!-- Journal / Blog -->
+        <section class="section blog-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>From The Journal</h2>
+                    <a href="#" class="link-arrow">Read More →</a>
+                </div>
+                <div class="blog-grid">
+                    <article class="blog-post">
+                        <div class="blog-img">
+                            <img src="warm-geometry.png" alt="Blog 1">
+                        </div>
+                        <div class="blog-content">
+                            <span class="blog-cat">Recipes</span>
+                            <h3>Why "Bee Ageless" is liquid gold</h3>
+                            <a href="#">Read Post</a>
+                        </div>
+                    </article>
+                    <article class="blog-post">
+                        <div class="blog-img">
+                            <img src="cyprus-map.png" alt="Blog 2">
+                        </div>
+                        <div class="blog-content">
+                            <span class="blog-cat">Heritage</span>
+                            <h3>Sourcing herbs from Troodos Mountains</h3>
+                            <a href="#">Read Post</a>
+                        </div>
+                    </article>
+                </div>
             </div>
-            <div class="parallax-layer content">
-                <h2>100% Organic.<br>Cooked Fresh.</h2>
-                <button class="btn-magnetic">Read The Story</button>
+        </section>
+
+        <!-- Map & Visit Us -->
+        <section class="visit-us-section">
+            <div class="map-wrapper">
+                <img src="cyprus-map.png" class="map-bg" alt="Map">
+                <div class="map-pin" style="top: 40%; left: 60%;">
+                    <div class="pin-head"><i class="fa-solid fa-store"></i></div>
+                    <div class="pin-pulse"></div>
+                </div>
+            </div>
+            <div class="visit-card">
+                <h3>Come say hi!</h3>
+                <p>We'd love to show you how we cook our cosmetics. Visit our flagship store in Nicosia.</p>
+                <div class="location-details">
+                    <p><strong>Address:</strong><br>12 Heritage Street, Nicosia</p>
+                    <p><strong>Hours:</strong><br>Mon-Sat: 10am - 7pm</p>
+                </div>
+                <button class="btn-primary full-width">Get Directions</button>
             </div>
         </section>
 
         <!-- Footer -->
-        <footer class="cinema-footer">
-            <div class="footer-video-bg">
-                <img src="velvet-bg.png" alt="Texture">
-            </div>
-            <div class="footer-content">
-                <h2 class="footer-logo">Hermann.</h2>
-                <div class="footer-links">
-                    <a href="#">Shop</a>
-                    <a href="#">Journal</a>
-                    <a href="#">Contact</a>
+        <footer class="footer-joy">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <h2>Hermann.</h2>
+                        <p>Artisanal skincare cooked with <i class="fa-solid fa-heart" style="color: #D35E35;"></i> in
+                            Cyprus.</p>
+                        <div class="socials">
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-links">
+                        <h4>Shop</h4>
+                        <a href="#">Shop All</a>
+                        <a href="#">Bestsellers</a>
+                        <a href="#">New Arrivals</a>
+                    </div>
+                    <div class="footer-links">
+                        <h4>Help</h4>
+                        <a href="#">Shipping</a>
+                        <a href="#">Returns</a>
+                        <a href="#">FAQ</a>
+                    </div>
+                    <div class="footer-newsletter">
+                        <h4>Join the Family</h4>
+                        <p>Get 10% off your first freshly cooked order.</p>
+                        <div class="input-group">
+                            <input type="email" placeholder="Your email address">
+                            <button>Join</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    &copy; 2024 Hermann Gourmet Cosmetics. Made with joy.
                 </div>
             </div>
         </footer>
 
     </main>
 
-    <script src="script.js"></script>
 </body>
 
 </html>
