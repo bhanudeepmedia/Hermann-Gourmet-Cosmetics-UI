@@ -1,8 +1,11 @@
 {
     "general": {
+        "accessibility": {
+            "skip_to_text": "Skip to content"
+        },
         "404": {
             "title": "Page not found",
-            "subtext_html": "The page you looking for not found."
+            "subtext": "The page you requested does not exist."
         }
     }
 }

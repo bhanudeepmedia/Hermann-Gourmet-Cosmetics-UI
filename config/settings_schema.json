@@ -1,69 +1,10 @@
 [
     {
         "name": "theme_info",
-        "theme_name": "Hermann Zielinski Edition",
-        "theme_version": "2.0.0"
-    },
-    {
-        "name": "Colors",
-        "settings": [
-            {
-                "type": "header",
-                "content": "Palette"
-            },
-            {
-                "type": "color",
-                "id": "bg_color",
-                "label": "Background (Off-White)",
-                "default": "#FDFBF7"
-            },
-            {
-                "type": "color",
-                "id": "text_color",
-                "label": "Primary Text (Dark)",
-                "default": "#1a1a1a"
-            },
-            {
-                "type": "color",
-                "id": "accent_color",
-                "label": "Accent (Hermann Warm)",
-                "default": "#884F4F"
-            },
-            {
-                "type": "color",
-                "id": "border_color",
-                "label": "Borders",
-                "default": "#E5E5E5"
-            }
-        ]
-    },
-    {
-        "name": "Typography",
-        "settings": [
-            {
-                "type": "header",
-                "content": "Fonts"
-            },
-            {
-                "type": "font_picker",
-                "id": "heading_font",
-                "label": "Heading Font",
-                "default": "serif"
-            },
-            {
-                "type": "font_picker",
-                "id": "body_font",
-                "label": "Body Font",
-                "default": "sans-serif"
-            },
-            {
-                "type": "range",
-                "id": "scale",
-                "label": "Base Scale",
-                "min": 80,
-                "max": 120,
-                "default": 100
-            }
-        ]
+        "theme_name": "Hermann Zielinski Premium",
+        "theme_version": "1.0.0",
+        "theme_author": "Hermann Gourmet Cosmetics",
+        "theme_documentation_url": "https://hermanncosmetics.com",
+        "theme_support_url": "https://hermanncosmetics.com/pages/contact"
     }
 ]

@@ -1,14 +1,26 @@
 {
     "sections": {
         "hero": {
-            "type": "hero"
+            "type": "hero",
+            "settings": {
+                "eyebrow_text": "Since 2014 • Cyprus",
+                "title": "Skincare so fresh,<br>you could <em>eat it</em>.",
+                "description": "Handmade in Cyprus using grandmother's secret recipes and the finest organic botanicals. No nasties, just joy.",
+                "button_text": "Explore The Menu",
+                "button_link": "/collections/all"
+            }
         },
-        "featured": {
-            "type": "featured-products"
+        "featured-products": {
+            "type": "featured-products",
+            "settings": {
+                "heading": "Fresh From The Kitchen",
+                "products_to_show": 4,
+                "view_all_link": "/collections/all"
+            }
         }
     },
     "order": [
         "hero",
-        "featured"
+        "featured-products"
     ]
 }

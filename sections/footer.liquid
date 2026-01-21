@@ -1,18 +1,100 @@
-<footer class="site-footer">
+<footer class="footer">
   <div class="container">
-    <div style="margin-bottom:2rem;">
-      <h2 style="font-size:2rem; margin-bottom:0.5rem;">HERMANN</h2>
-      <p style="opacity:0.7;">Handmade in Cyprus</p>
+    
+    <div class="footer__grid">
+      
+      <!-- Brand Column -->
+      <div class="footer__column">
+        <div class="footer__logo">
+          {% if section.settings.logo %}
+            <img src="{{ section.settings.logo | img_url: '150x' }}" alt="{{ shop.name }}" style="max-width: 150px; filter: brightness(0) invert(1);">
+          {% else %}
+            <h3 style="font-size: 2rem; margin-bottom: 1rem;">HERMANN</h3>
+          {% endif %}
+        </div>
+        <p style="opacity: 0.7; line-height: 1.6; max-width: 300px;">
+          {{ section.settings.description | default: "Artisanal skincare cooked with ❤️ in Cyprus." }}
+        </p>
+      </div>
+
+      <!-- Shop Links -->
+      <div class="footer__column">
+        <h4 class="footer__column-title">Shop</h4>
+        <ul class="footer__list">
+          {% for link in linklists.footer-shop.links %}
+            <li class="footer__list-item">
+              <a href="{{ link.url }}" class="footer__link">{{ link.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <!-- Support Links -->
+      <div class="footer__column">
+        <h4 class="footer__column-title">Support</h4>
+        <ul class="footer__list">
+          {% for link in linklists.footer-support.links %}
+            <li class="footer__list-item">
+              <a href="{{ link.url }}" class="footer__link">{{ link.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="footer__column">
+        <h4 class="footer__column-title">Stay in the loop</h4>
+        <p style="opacity: 0.7; margin-bottom: 1rem; font-size: 0.9rem;">
+          Join our family for exclusive recipes and offers.
+        </p>
+        {% form 'customer' %}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <div class="footer__newsletter-form">
+            <input 
+              type="email" 
+              name="contact[email]" 
+              placeholder="Your email" 
+              class="footer__newsletter-input"
+              required
+            >
+            <button type="submit" class="footer__newsletter-button">Join</button>
+          </div>
+        {% endform %}
+      </div>
+
     </div>
-    <div style="display:flex; justify-content:center; gap:2rem; margin-bottom:2rem;">
-      <a href="/search">Search</a>
-      <a href="/policies/privacy-policy">Privacy</a>
-      <a href="/pages/contact">Contact</a>
+
+    <div class="footer__bottom">
+      <div class="footer__copyright">
+        © {{ 'now' | date: "%Y" }} {{ shop.name }}. Handcrafted in Cyprus.
+      </div>
+      <div class="footer__payment-icons">
+        <i class="fa-brands fa-cc-visa"></i>
+        <i class="fa-brands fa-cc-mastercard"></i>
+        <i class="fa-brands fa-cc-amex"></i>
+        <i class="fa-brands fa-cc-paypal"></i>
+        <i class="fa-brands fa-apple-pay"></i>
+      </div>
     </div>
-    <p style="font-size:0.8rem; opacity:0.5;">&copy; 2024 Hermann Gourmet Cosmetics</p>
+
   </div>
 </footer>
 
 {% schema %}
-{ "name": "Footer", "settings": [] }
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Footer logo"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Artisanal skincare cooked with ❤️ in Cyprus."
+    }
+  ]
+}
 {% endschema %}

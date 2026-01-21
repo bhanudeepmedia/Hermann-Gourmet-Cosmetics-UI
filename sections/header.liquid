@@ -1,59 +1,54 @@
-<header class="site-header">
-  <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
-    
-    <!-- LEFT: Main Nav (Zielinski Style) -->
-    <nav class="desktop-nav" style="display: flex; align-items: center;">
-      {% for link in linklists.main-menu.links %}
-      <div class="nav-item" style="position: relative;">
-        <a href="{{ link.url }}" class="nav-link">{{ link.title }}</a>
-        
-        {%- if link.links != blank -%}
-          <div class="mega-menu" style="
-            position: absolute; 
-            top: 100%; left: 0; 
-            background: var(--c-bg); 
-            border: 1px solid var(--c-border); 
-            padding: 2rem; 
-            width: 300px; 
-            opacity: 0; 
-            pointer-events: none; 
-            transition: 0.3s;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-          ">
-            {% for child in link.links %}
-              <a href="{{ child.url }}" style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">{{ child.title }}</a>
-            {% endfor %}
-          </div>
-        {%- endif -%}
+<header class="header">
+  <div class="container">
+    <div class="header__inner">
+      
+      <!-- Logo -->
+      <div class="header__logo">
+        <a href="/">
+          {% if section.settings.logo %}
+            <img src="{{ section.settings.logo | img_url: '200x' }}" alt="{{ shop.name }}" style="max-height: 50px;">
+          {% else %}
+            HERMANN
+          {% endif %}
+        </a>
       </div>
-      {% endfor %}
-    </nav>
-    
-    <!-- CENTER: Brand Logo -->
-    <div class="logo-wrapper">
-      <a href="/" style="font-family: var(--f-heading); font-size: 2rem; letter-spacing: 0.05em; font-weight: 300;">
-        HERMANN
-      </a>
-    </div>
 
-    <!-- RIGHT: Utility Icons -->
-    <div class="utils" style="display: flex; gap: 1.5rem; align-items: center;">
-      <a href="/search"><i class="fa-solid fa-magnifying-glass"></i></a>
-      <a href="/account"><i class="fa-regular fa-user"></i></a>
-      <a href="/cart" class="cart-btn" style="position: relative;">
-        <i class="fa-solid fa-bag-shopping"></i>
-        <span style="font-size: 0.7rem; position: absolute; top: -5px; right: -8px;">({{ cart.item_count }})</span>
-      </a>
-    </div>
+      <!-- Navigation -->
+      <nav class="header__nav hide-mobile">
+        {% for link in linklists.main-menu.links %}
+          <a href="{{ link.url }}" class="header__nav-link">
+            {{ link.title }}
+          </a>
+        {% endfor %}
+      </nav>
 
+      <!-- Icons -->
+      <div class="header__icons">
+        <a href="/search" class="header__icon">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </a>
+        <a href="/account" class="header__icon hide-mobile">
+          <i class="fa-regular fa-user"></i>
+        </a>
+        <a href="/cart" class="header__icon">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="header__cart-count">({{ cart.item_count }})</span>
+        </a>
+      </div>
+
+    </div>
   </div>
 </header>
 
-<style>
-/* Mega Menu Hover Logic */
-.nav-item:hover .mega-menu { opacity: 1; pointer-events: auto; transform: translateY(10px); }
-</style>
-
 {% schema %}
-{ "name": "Header", "settings": [] }
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    }
+  ]
+}
 {% endschema %}

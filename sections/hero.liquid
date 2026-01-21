@@ -1,39 +1,77 @@
-<div class="hero-section" style="position: relative; height: 90vh; overflow: hidden; display: flex; align-items: center;">
-  
-  <!-- Content -->
-  <div class="container" style="position: relative; z-index: 2; width: 100%;">
-    <div class="hero-content" style="max-width: 600px; animation: slideUp 1s ease 0.5s forwards; opacity: 0; transform: translateY(30px);">
-      <span style="text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.2em; margin-bottom: 1.5rem; display: block; color: var(--c-accent);">
-        Since 2014 • Cyprus
-      </span>
-      <h1 style="font-size: 4.5rem; line-height: 1.1; margin-bottom: 2rem;">
-        Skincare so fresh,<br>you could <em>eat it</em>.
-      </h1>
-      <a href="/collections/all" class="btn">
-        Explore The Menu
-      </a>
+<section class="hero">
+  <div class="container">
+    <div class="hero__content">
+      {% if section.settings.eyebrow_text != blank %}
+        <span class="hero__eyebrow">{{ section.settings.eyebrow_text }}</span>
+      {% endif %}
+      
+      {% if section.settings.title != blank %}
+        <h1 class="hero__title">{{ section.settings.title }}</h1>
+      {% endif %}
+      
+      {% if section.settings.description != blank %}
+        <p class="hero__description">{{ section.settings.description }}</p>
+      {% endif %}
+      
+      {% if section.settings.button_text != blank %}
+        <a href="{{ section.settings.button_link }}" class="btn btn--primary">
+          {{ section.settings.button_text }}
+        </a>
+      {% endif %}
     </div>
   </div>
-
-  <!-- Background Image with Parallax Effect -->
-  <div class="hero-bg" style="
-    position: absolute; top: 0; right: 0; width: 50%; height: 100%; 
-    background-image: url('https://cdn.shopify.com/s/files/1/0533/2089/files/hero-placeholder.jpg'); 
-    background-size: cover; background-position: center;
-    opacity: 0.9;
-  "></div>
-
-</div>
-
-<style>
-@keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
-@media(max-width: 768px) {
-  .hero-section { height: auto; padding: 4rem 0; flex-direction: column; }
-  .hero-bg { position: relative; width: 100%; height: 400px; order: -1; margin-bottom: 2rem; }
-  .hero-content h1 { font-size: 2.5rem; }
-}
-</style>
+  
+  {% if section.settings.image %}
+    <div class="hero__image">
+      <img src="{{ section.settings.image | img_url: '1600x' }}" alt="{{ section.settings.title }}">
+    </div>
+  {% endif %}
+</section>
 
 {% schema %}
-{ "name": "Hero Banner", "presets": [{"name": "Hero Banner"}] }
+{
+  "name": "Hero Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow_text",
+      "label": "Eyebrow text",
+      "default": "Since 2014 • Cyprus"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Heading",
+      "default": "Skincare so fresh, you could eat it."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Handmade in Cyprus using grandmother's secret recipes and the finest organic botanicals."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Explore The Menu"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Hero image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner"
+    }
+  ]
+}
 {% endschema %}

@@ -1,9 +1,28 @@
-<div class="container section" style="text-align:center; padding: 10rem 0;">
-  <h1>404</h1>
-  <p>Page not found</p>
-  <a href="/" class="btn">Return Home</a>
+<div class="page-width page-width--narrow section">
+  <div class="text-center">
+    <h1 class="mb-3">{{ 'general.404.title' | t }}</h1>
+    <p class="mb-4">{{ 'general.404.subtext' | t }}</p>
+    <a href="/" class="btn">
+      Return Home
+    </a>
+  </div>
 </div>
 
+<style>
+.page-width {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.page-width--narrow {
+  max-width: 800px;
+}
+</style>
+
 {% schema %}
-{ "name": "404", "settings": [] }
+{
+  "name": "404 Page",
+  "settings": []
+}
 {% endschema %}
