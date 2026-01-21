@@ -1,77 +1,95 @@
 /* =========================================
-   CUSTOM SETTINGS OVERRIDES
-   Maps Schema settings to CSS Variables
+   PREMIUM LUXURY STYLES (V3)
+   Palette: Olive #263112 | Terracotta #884F4F
    ========================================= */
+
 :root {
-  /* --- COLORS --- */
-  --c-cream: {{ settings.color_background | default: '#FDFBF7' }};
-  --c-text: {{ settings.color_text | default: '#2C1810' }};
-  --c-accent: {{ settings.color_accent | default: '#D35E35' }};
-  --c-sage: {{ settings.color_secondary | default: '#8B9D83' }};
-  --c-sand: {{ settings.color_sand | default: '#E8DCC4' }};
+  /* Core Colors */
+  --c-bg: {{ settings.color_background | default: '#FDFBF7' }};
+  --c-text: {{ settings.color_text | default: '#263112' }};
+  --c-accent: {{ settings.color_accent | default: '#884F4F' }};
+  --c-taupe: {{ settings.color_secondary | default: '#866B67' }};
   
-  /* --- BUTTONS --- */
-  --btn-primary-bg: {{ settings.btn_primary_bg | default: settings.color_accent }};
-  --btn-primary-text: {{ settings.btn_primary_text | default: '#FFFFFF' }};
-  --btn-secondary-border: {{ settings.btn_secondary_border | default: settings.color_text }};
+  /* UI Elements */
+  --btn-bg: {{ settings.btn_bg | default: '#263112' }};
+  --btn-text: {{ settings.btn_text | default: '#FFFFFF' }};
   
-  /* --- FOOTER --- */
-  --footer-bg: {{ settings.footer_bg | default: settings.color_text }};
-  --footer-text: {{ settings.footer_text | default: '#FFFFFF' }};
+  /* Mobile Specific */
+  --mobile-bg: {{ settings.mobile_menu_bg | default: '#FDFBF7' }};
+  --mobile-text: {{ settings.mobile_menu_text | default: '#263112' }};
 
-  /* --- FONTS --- */
-  --font-heading: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }};
-  --font-body: {{ settings.font_body.family }}, {{ settings.font_body.fallback_families }};
-  
-  /* --- GRADIENTS --- */
-  {% if settings.color_background_gradient != blank %}
-    --bg-gradient: {{ settings.color_background_gradient }};
-  {% endif %}
+  /* Typography */
+  --font-heading: {{ settings.font_heading.family }}, Serif;
+  --font-body: {{ settings.font_body.family }}, Sans-Serif;
 }
 
-/* Apply Gradient if set */
-{% if settings.color_background_gradient != blank %}
 body {
-  background: var(--bg-gradient);
+  background-color: var(--c-bg);
+  color: var(--c-text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
-{% else %}
-body {
-  background-color: var(--c-cream);
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--c-text);
+  font-weight: 400; /* Luxury often uses lighter weights */
+  letter-spacing: -0.02em;
+}
+
+/* --- PREMIUM ANIMATIONS --- */
+{% if settings.enable_animations %}
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 {% endif %}
 
-h1, h2, h3, h4, .font-heading {
-  font-family: var(--font-heading);
-}
-
-body, p, a, .font-body {
-  font-family: var(--font-body);
-}
-
-/* Button Overrides */
+/* --- BUTTONS --- */
 .btn-primary {
-  background-color: var(--btn-primary-bg) !important;
-  color: var(--btn-primary-text) !important;
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid var(--btn-bg);
+  transition: all 0.3s ease;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.btn-primary:hover {
+  background-color: transparent;
+  color: var(--btn-bg);
+  transform: translateY(-2px);
 }
 
-.btn-secondary {
-  border-color: var(--btn-secondary-border) !important;
-  color: var(--btn-secondary-border) !important;
+/* --- MOBILE VISIBILITY FIXES --- */
+.mobile-menu-drawer {
+  background-color: var(--mobile-bg) !important;
+  color: var(--mobile-text) !important;
 }
-.btn-secondary:hover {
-  background-color: var(--btn-secondary-border) !important;
-  color: var(--c-cream) !important;
+.mobile-nav-toggle {
+  color: var(--c-text) !important;
+}
+.mobile-links a {
+  color: var(--mobile-text) !important;
 }
 
-/* Footer Override */
-.site-footer {
-  background-color: var(--footer-bg) !important;
-  color: var(--footer-text) !important;
+/* --- BIG & BROAD LAYOUT --- */
+.container {
+  max-width: 1440px; /* Wider canvas */
+  margin: 0 auto;
+  padding: 0 5%;
 }
-.site-footer a {
-  color: var(--footer-text) !important;
-  opacity: 0.8;
-}
-.site-footer a:hover {
-  opacity: 1;
+
+.section {
+  padding: 6rem 0; /* More breathing room */
 }

@@ -1,94 +1,72 @@
 [
     {
         "name": "theme_info",
-        "theme_name": "Hermann Premium",
+        "theme_name": "Hermann Luxury",
         "theme_author": "Antigravity",
-        "theme_version": "2.0.0",
-        "theme_documentation_url": "https://help.shopify.com/manual/using-themes"
+        "theme_version": "3.0.0"
     },
     {
-        "name": "Colors",
+        "name": "Colors & Style",
         "settings": [
             {
                 "type": "header",
-                "content": "General"
+                "content": "Brand Palette"
             },
             {
                 "type": "color",
                 "id": "color_background",
-                "label": "Background",
+                "label": "Main Background",
                 "default": "#FDFBF7"
-            },
-            {
-                "type": "color_background",
-                "id": "color_background_gradient",
-                "label": "Background Gradient (Optional)"
             },
             {
                 "type": "color",
                 "id": "color_text",
-                "label": "Text",
-                "default": "#2C1810"
+                "label": "Primary Text (Dark Green)",
+                "default": "#263112"
             },
             {
                 "type": "color",
                 "id": "color_accent",
-                "label": "Accent / Links",
-                "default": "#D35E35"
+                "label": "Accent (Terracotta)",
+                "default": "#884F4F"
             },
             {
                 "type": "color",
                 "id": "color_secondary",
-                "label": "Secondary / Sage",
-                "default": "#8B9D83"
-            },
-            {
-                "type": "color",
-                "id": "color_sand",
-                "label": "Neutral / Sand",
-                "default": "#E8DCC4"
+                "label": "Secondary (Taupe)",
+                "default": "#866B67"
             },
             {
                 "type": "header",
-                "content": "Primary Button"
+                "content": "Buttons"
             },
             {
                 "type": "color",
-                "id": "btn_primary_bg",
+                "id": "btn_bg",
                 "label": "Button Background",
-                "default": "#D35E35"
+                "default": "#263112"
             },
             {
                 "type": "color",
-                "id": "btn_primary_text",
+                "id": "btn_text",
                 "label": "Button Text",
                 "default": "#FFFFFF"
             },
             {
                 "type": "header",
-                "content": "Secondary Button"
+                "content": "Mobile Menu"
             },
             {
                 "type": "color",
-                "id": "btn_secondary_border",
-                "label": "Button Border/Text",
-                "default": "#2C1810"
-            },
-            {
-                "type": "header",
-                "content": "Footer"
+                "id": "mobile_menu_bg",
+                "label": "Drawer Background",
+                "default": "#FDFBF7"
             },
             {
                 "type": "color",
-                "id": "footer_bg",
-                "label": "Footer Background",
-                "default": "#2C1810"
-            },
-            {
-                "type": "color",
-                "id": "footer_text",
-                "label": "Footer Text",
-                "default": "#FFFFFF"
+                "id": "mobile_menu_text",
+                "label": "Drawer Text",
+                "default": "#263112"
             }
         ]
     },
@@ -110,8 +88,8 @@
             {
                 "type": "range",
                 "id": "font_scale",
-                "min": 100,
-                "max": 150,
+                "min": 90,
+                "max": 120,
                 "step": 5,
                 "unit": "%",
                 "label": "Font Scale",
@@ -123,30 +101,9 @@
         "name": "Layout",
         "settings": [
             {
-                "type": "range",
-                "id": "page_width",
-                "min": 1000,
-                "max": 1600,
-                "step": 100,
-                "unit": "px",
-                "label": "Page Width",
-                "default": 1400
-            },
-            {
                 "type": "checkbox",
-                "id": "enable_sticky_header",
-                "label": "Enable Sticky Header",
-                "default": true
-            }
-        ]
-    },
-    {
-        "name": "Product Cards",
-        "settings": [
-            {
-                "type": "checkbox",
-                "id": "card_show_atc",
-                "label": "Show Add to Cart Button",
+                "id": "enable_animations",
+                "label": "Enable Scroll Animations",
                 "default": true
             }
         ]
