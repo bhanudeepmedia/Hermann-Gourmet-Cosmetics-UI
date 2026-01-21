@@ -4,18 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hermann Gourmet Cosmetics | Royal Edition</title>
+    <title>Hermann Gourmet Cosmetics | The Warm Heritage</title>
 
     <!-- GSAP for High-End Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
 
-    <!-- Google Fonts: Source Serif 4 + Figtree -->
+    <!-- Google Fonts: Playfair Display + Lato -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,900;1,8..60,400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
         rel="stylesheet">
 
     <link rel="stylesheet" href="styles.css">
@@ -23,115 +23,133 @@
 
 <body class="is-loading">
 
-    <!-- Loading Screen -->
-    <div class="loader">
-        <div class="loader-text">HERMANN</div>
-        <div class="loader-bar"></div>
+    <!-- Geometric Wipe Loader -->
+    <div class="loader-overlay">
+        <div class="loader-circle"></div>
     </div>
 
     <!-- Navigation -->
-    <nav class="nav-fixed">
+    <nav class="nav-heritage">
         <div class="nav-logo">Hermann.</div>
-        <div class="nav-menu">
-            <div class="menu-line"></div>
-            <div class="menu-line"></div>
+        <div class="nav-actions">
+            <span class="nav-item">Shop</span>
+            <span class="nav-item">Story</span>
+            <span class="nav-item cart-icon">Cart (0)</span>
         </div>
     </nav>
 
-    <main class="main-content">
+    <main>
 
-        <!-- Hero Section: The Reveal -->
-        <section class="hero" data-scroll-section>
-            <div class="hero-bg-wrapper">
-                <img src="royal-hero.png" alt="Royal Marble Statue" class="hero-img">
-                <div class="gold-overlay"></div>
+        <!-- Hero: Warm Hug -->
+        <section class="hero-heritage" data-scroll-section>
+            <div class="hero-arch-window">
+                <img src="vintage-podium.png" alt="Vintage Heritage Product" class="hero-img-inner">
             </div>
 
-            <div class="hero-content">
-                <div class="hero-label">Est. 2014 • Cyprus</div>
-                <h1 class="hero-title">
-                    <span class="word">Modern</span>
-                    <span class="word">Alchemy</span>
-                    <span class="word italics">Reborn</span>
+            <div class="hero-text-content">
+                <div class="stamp-badge">
+                    <svg viewBox="0 0 100 100" class="rotate-text">
+                        <path id="curve" d="M 25, 50 a 25,25 0 1,1 50,0 a 25,25 0 1,1 -50,0" fill="transparent" />
+                        <text>
+                            <textPath href="#curve">PETA APPROVED • HANDMADE •</textPath>
+                        </text>
+                    </svg>
+                    <div class="center-star">★</div>
+                </div>
+
+                <h1 class="heritage-title">
+                    <span class="line-reveal">Grandmother’s</span>
+                    <span class="line-reveal">Secret Recipes</span>
                 </h1>
-                <div class="hero-footer">
-                    <p>Grandmother's recipes, cooked to perfection.</p>
-                    <div class="scroll-indicator">
-                        <span>Scroll</span>
-                        <div class="line"></div>
+                <p class="heritage-subtitle">Freshly cooked skincare from the heart of Cyprus.</p>
+                <button class="btn-heritage">Taste the Menu</button>
+            </div>
+        </section>
+
+        <!-- Marquee Ribbon -->
+        <div class="ribbon-marquee">
+            <div class="ribbon-content">
+                <span>Timeless Beauty</span> • <span>Fresh Ingredients</span> • <span>Ancient Wisdom</span> •
+                <span>Timeless Beauty</span> • <span>Fresh Ingredients</span> • <span>Ancient Wisdom</span>
+            </div>
+        </div>
+
+        <!-- Geometric Gallery (Collage) -->
+        <section class="geo-gallery" data-scroll-section>
+            <div class="geo-shape circle-shape">
+                <img src="heritage-story.png" alt="Herbs">
+            </div>
+            <div class="geo-shape arch-shape">
+                <img src="warm-geometry.png" alt="Architecture">
+            </div>
+            <div class="geo-text-block">
+                <h2>A Hug for <br>Your Skin</h2>
+                <p>We believe skincare should feel like home. Warm, comforting, and made with love. Our formulations
+                    bring together the finest botanicals in a symphony of texture and scent.</p>
+            </div>
+        </section>
+
+        <!-- Product Cards: The Recipe Cards -->
+        <section class="recipe-cards-section" data-scroll-section>
+            <h2>The Menu</h2>
+            <div class="cards-container">
+                <!-- Card 1 -->
+                <div class="recipe-card">
+                    <div class="card-outline">
+                        <div class="card-img-mask">
+                            <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=1887&auto=format&fit=crop"
+                                alt="Cream">
+                        </div>
+                        <div class="card-details">
+                            <h3>Bee Ageless</h3>
+                            <span class="price">€45.00</span>
+                            <div class="add-line">Add to Basket</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="recipe-card">
+                    <div class="card-outline">
+                        <div class="card-img-mask pill-mask">
+                            <img src="https://images.unsplash.com/photo-1608248597279-f99d160bfbc8?q=80&w=2670&auto=format&fit=crop"
+                                alt="Scrub">
+                        </div>
+                        <div class="card-details">
+                            <h3>Golden Scrub</h3>
+                            <span class="price">€32.00</span>
+                            <div class="add-line">Add to Basket</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="recipe-card">
+                    <div class="card-outline">
+                        <div class="card-img-mask arch-mask">
+                            <img src="https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?q=80&w=1887&auto=format&fit=crop"
+                                alt="Balm">
+                        </div>
+                        <div class="card-details">
+                            <h3>Velvet Rose</h3>
+                            <span class="price">€38.00</span>
+                            <div class="add-line">Add to Basket</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Horizontal Scroll Section: The Menu -->
-        <section class="menu-scroller" data-scroll-section>
-            <div class="scroller-track">
-                <div class="scroller-card intro-card">
-                    <h2>Our<br>Royal<br>Menu</h2>
-                </div>
-                <div class="scroller-card product-card">
-                    <div class="p-image"><img
-                            src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=1887&auto=format&fit=crop"
-                            alt="Cream"></div>
-                    <div class="p-details">
-                        <h3>Bee Ageless</h3>
-                        <p>€45.00</p>
-                    </div>
-                </div>
-                <div class="scroller-card product-card">
-                    <div class="p-image"><img
-                            src="https://images.unsplash.com/photo-1608248597279-f99d160bfbc8?q=80&w=2670&auto=format&fit=crop"
-                            alt="Scrub"></div>
-                    <div class="p-details">
-                        <h3>Golden Scrub</h3>
-                        <p>€32.00</p>
-                    </div>
-                </div>
-                <div class="scroller-card product-card">
-                    <div class="p-image"><img
-                            src="https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?q=80&w=1887&auto=format&fit=crop"
-                            alt="Balm"></div>
-                    <div class="p-details">
-                        <h3>Velvet Rose</h3>
-                        <p>€38.00</p>
-                    </div>
-                </div>
-                <div class="scroller-card quote-card">
-                    <p>"Beauty is a ritual, not a routine."</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Curtain Reveal Section: The Philosophy -->
-        <section class="philosophy" data-scroll-section>
-            <div class="curtain-l"></div>
-            <div class="curtain-r"></div>
-            <div class="philosophy-content">
-                <img src="velvet-bg.png" class="philo-bg" alt="Velvet">
-                <div class="philo-text">
-                    <h2>The <span class="gold-text">Golden</span> Standard</h2>
-                    <p>We blend the finest raw materials with ancient techniques. Approved by PETA, loved by skin.</p>
-                    <button class="btn-royal">Explore The Court</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Geometric Footer -->
-        <section class="footer-royal" data-scroll-section>
-            <div class="geo-overlay"></div>
-            <h1 class="footer-title">Hermann</h1>
-            <div class="footer-links">
-                <a href="#">Instagram</a>
-                <a href="#">Shop</a>
-                <a href="#">Contact</a>
-            </div>
-        </section>
+        <!-- Footer -->
+        <footer class="footer-warm">
+            <div class="footer-logo">Hermann.</div>
+            <p>Made with Love in Cyprus.</p>
+        </footer>
 
     </main>
 
-    <!-- WebGL-like noise overlay -->
-    <div class="noise-overlay"></div>
+    <!-- Grain Overlay for texture -->
+    <div class="paper-texture"></div>
 
     <script src="script.js"></script>
 </body>

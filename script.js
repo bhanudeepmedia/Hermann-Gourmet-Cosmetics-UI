@@ -1,104 +1,85 @@
-// Initialize Lenis for Smooth Scrolling
+// Initialize Lenis
 const lenis = new Lenis({
-    duration: 1.2,
+    duration: 1.5,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    orientation: 'vertical',
-    gestureOrientation: 'vertical',
     smoothWheel: true,
-    smoothTouch: false,
-    touchMultiplier: 2,
 });
 
 function raf(time) {
     lenis.raf(time);
     requestAnimationFrame(raf);
 }
-
 requestAnimationFrame(raf);
 
-// Register GSAP Plugins
 gsap.registerPlugin(ScrollTrigger);
 
 // Loader Animation
-window.addEventListener("load", () => {
+window.onload = () => {
     const tl = gsap.timeline();
 
-    tl.to(".loader-bar", {
-        width: "100%",
-        duration: 1.5,
+    tl.to(".loader-circle", {
+        scale: 50,
+        duration: 1.2,
         ease: "power2.inOut"
     })
-        .to(".loader-text", {
-            y: -50,
+        .to(".loader-overlay", {
             opacity: 0,
-            duration: 0.5
+            duration: 0.5,
+            pointerEvents: "none"
         })
-        .to(".loader", {
-            yPercent: -100,
-            duration: 1,
-            ease: "power4.inOut"
-        }, "-=0.2")
-        .from(".hero-title .word", {
-            y: 150,
-            opacity: 0,
+        .from(".hero-img-inner", {
+            scale: 1.5,
+            y: 100,
             duration: 1.5,
-            stagger: 0.2,
-            ease: "power4.out"
-        }, "-=0.5")
-        .from(".hero-img", {
-            scale: 1.2,
-            duration: 2,
             ease: "expo.out"
-        }, "-=1.5");
-});
+        }, "-=1")
+        .from(".line-reveal", {
+            yPercent: 100,
+            opacity: 0,
+            stagger: 0.1,
+            duration: 1,
+            ease: "power3.out"
+        }, "-=1");
+}
 
-// Parallax Hero
-gsap.to(".hero-img", {
-    yPercent: 20,
+// Parallax for Hero Arch
+gsap.to(".hero-arch-window", {
+    yPercent: 30,
     ease: "none",
     scrollTrigger: {
-        trigger: ".hero",
+        trigger: ".hero-heritage",
         start: "top top",
         end: "bottom top",
         scrub: true
     }
 });
 
-// Horizontal Scroll for Menu
-let sections = gsap.utils.toArray(".scroller-card");
-
-gsap.to(sections, {
-    xPercent: -100 * (sections.length - 1),
-    ease: "none",
+// Geometric Gallery Parallax
+gsap.to(".circle-shape", {
+    y: -100,
     scrollTrigger: {
-        trigger: ".menu-scroller",
-        pin: true,
-        scrub: 1,
-        snap: 1 / (sections.length - 1),
-        end: "+=3000", /* Controls the speed of scroll */
+        trigger: ".geo-gallery",
+        scrub: 1.5
     }
 });
 
-// Curtain Reveal
-gsap.timeline({
+gsap.to(".arch-shape", {
+    y: 50,
     scrollTrigger: {
-        trigger: ".philosophy",
-        start: "top 80%",
-        end: "top 30%",
+        trigger: ".geo-gallery",
         scrub: 1
     }
-})
-    .to(".curtain-l", { width: "0%" })
-    .to(".curtain-r", { width: "0%" }, "<"); // Run simultaneously
+});
 
-// Footer Text Reveal
-gsap.from(".footer-title", {
+// Recipe Cards Stagger Reveal
+gsap.from(".recipe-card", {
     y: 100,
     opacity: 0,
     duration: 1,
+    stagger: 0.2,
+    ease: "power2.out",
     scrollTrigger: {
-        trigger: ".footer-royal",
-        start: "top center",
-        toggleActions: "play none none reverse"
+        trigger: ".recipe-cards-section",
+        start: "top 70%"
     }
 });
