@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Hermann Gourmet Cosmetics</title>
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Outfit:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 90vh;
+        }
+
+        .contact-info-panel {
+            padding: 6rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #FDFBF7;
+        }
+
+        .contact-info-panel h1 {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            color: var(--c-terracotta);
+        }
+
+        .contact-details {
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-details p {
+            margin-bottom: 1rem;
+        }
+
+        .contact-details strong {
+            display: block;
+            margin-bottom: 0.2rem;
+            color: var(--c-text);
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #ddd;
+            border-radius: var(--radius-sm);
+            font-family: var(--f-sans);
+            font-size: 1rem;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--c-terracotta);
+            outline: none;
+        }
+
+        .map-panel {
+            position: relative;
+            background: #EBE5DE;
+            overflow: hidden;
+        }
+
+        .map-full-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.6;
+            mix-blend-mode: multiply;
+        }
+
+        .floating-hours {
+            position: absolute;
+            bottom: 50px;
+            left: 50px;
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--card-shadow);
+            max-width: 300px;
+        }
+
+        .floating-hours h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .floating-hours ul {
+            list-style: none;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .floating-hours li {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            border-bottom: 1px dotted #ccc;
+            padding-bottom: 5px;
+        }
+
+        @media (max-width: 900px) {
+            .contact-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .map-panel {
+                height: 400px;
+            }
+
+            .contact-info-panel {
+                padding: 3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Nav -->
+    <nav class="sticky-nav">
+        <div class="nav-container">
+            <div class="logo">Hermann<span class="dot">.</span></div>
+            <ul class="nav-links">
+                <li><a href="shop.html">Face</a></li>
+                <li><a href="shop.html">Body</a></li>
+                <li><a href="shop.html">Gift Sets</a></li>
+                <li><a href="journal.html">Journal</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+            <div class="mobile-toggle"><i class="fa-solid fa-bars"></i></div>
+        </div>
+    </nav>
+
+    <main class="contact-layout">
+        <div class="contact-info-panel">
+            <h1>Let's Chat</h1>
+            <div class="contact-details">
+                <p>Have a question about our ingredients? Want to know which cream suits your skin? We are here to help.
+                </p>
+                <div style="margin-top: 2rem;">
+                    <p><strong>Email Us</strong> hello@hermanncosmetics.com</p>
+                    <p><strong>Call Us</strong> +357 22 123 456</p>
+                    <p><strong>Visit Block</strong> 12 Heritage Street, Nicosia, Cyprus</p>
+                </div>
+            </div>
+
+            <form class="contact-form">
+                <label>Name</label>
+                <input type="text" placeholder="Your name">
+
+                <label>Email</label>
+                <input type="email" placeholder="Your email address">
+
+                <label>Message</label>
+                <textarea rows="5" placeholder="How can we help?"></textarea>
+
+                <button type="submit" class="btn-primary">Send Message</button>
+            </form>
+        </div>
+
+        <div class="map-panel">
+            <img src="cyprus-map.png" alt="Map Location" class="map-full-img">
+            <div class="floating-hours">
+                <h3>Opening Hours</h3>
+                <ul>
+                    <li><span>Mon - Fri</span> <span>10:00 - 19:00</span></li>
+                    <li><span>Saturday</span> <span>10:00 - 14:00</span></li>
+                    <li><span>Sunday</span> <span>Closed</span></li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>
