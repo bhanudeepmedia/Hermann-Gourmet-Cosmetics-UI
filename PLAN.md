@@ -1,42 +1,33 @@
-# Project Plan: Hermann Gourmet Cosmetics - Premium UI Variant
+# Project Plan: Hermann Gourmet Cosmetics
 
-## Objective
-Create a visually stunning, high-end UI variant for the Hermann Cosmetics homepage, emphasizing their "Gourmet/Artisanal" identity.
+## Status: Design Phase Complete (Joyful/Homely Theme)
 
-## Brand Identity Analysis
-- **Vibe:** Premium Artisanal, "Freshly Cooked", Vintage-Modern Luxury.
-- **Colors:**
-  - Primary: White (`#FFFFFF`) & Black (`#000000`)
-  - Accent: Dusty Rose (`#996E6A`)
-  - Secondary: Charcoal (`#242424`)
-- **Typography:**
-  - Headings: `Source Serif 4` (Elegant, literary)
-  - Body: `Figtree` (Clean, geometric)
+We have successfully created a high-end, user-friendly UI with:
+- [x] **Warm "Kitchen" Aesthetic**: Cream/Terracotta palette & Fraunces typography.
+- [x] **Interactive Home Page**: Hero, Product Grid, Process Steps, Blog, and Map.
+- [x] **Premium Animations**: GSAP scroll reveals and hover effects.
+- [x] **Mobile Responsive**: Sticky nav and adaptable grids.
 
-## Implementation Steps
+## Next Steps (Roadmap to Launch)
 
-### Step 1: Project Initialization (Status: In Progress)
-- [x] Create Project Directory
-- [x] Analyze Brand Identity
-- [ ] Initialize Git Repository
+### Phase 1: content & Asset Finalization
+- **Replace Images**: Swap the generated/Unsplash images with high-res photos of the actual Hermann products.
+- **Copywriting**: Ensure all text (titles, prices, descriptions) matches the live inventory.
+- **Links**: Update the navigation links (`#shop`, etc.) to point to real pages.
 
-### Step 2: visual Design Strategy
-- **Hero Section:** Full-screen immersive visual with the "Dusty Rose" accent used in a soft animations. Large, confident Serif typography.
-- **Product Showcase:** Minimalist cards with "texture reveal" hover effects (simulating the "freshly cooked" feel).
-- **Story Section:** Parallax scrolling section emphasizing the "First Cypriot Brand approved by PETA" and "Handmade" aspects.
+### Phase 2: Shopify Integration
+Since this is currently a static HTML site, we need to move it to Shopify.
+**Recommended Approach:**
+1.  **Create a New Layout File**: In Shopify, create `layout/theme.hermann-landing.liquid`.
+2.  **Asset Upload**: Upload all CSS, JS, and Images to Shopify 'Assets'.
+3.  **Dynamic Sections**: Convert the HTML blocks (Hero, Grid, etc.) into Shopify `{% schema %}` sections so they are editable in the Customizer.
 
-### Step 3: Development
-- **File Structure:**
-  - `index.html`: Structure for the Hero, Featured Products, and Story sections.
-  - `styles.css`: Custom CSS variables for the color palette, animations, and responsive grid.
-  - `script.js`: Minimal JS for scroll animations and interactions.
-- **Tech Stack:** Vanilla HTML/CSS (to ensure easy porting to Shopify Liquid).
+### Phase 3: Deployment
+- **GitHub**: Push the final code to the remote repository.
+- **Hosting**:
+    - If staying static: Deploy to Netlify/Vercel.
+    - If Shopify: Install the theme file.
 
-### Step 4: Shopify Integration
-- Convert the HTML/CSS into a single `liquid` section file.
-- Add Shopify Schema settings so the client can edit text and images in the Customizer.
-
-### Step 5: Deployment
-- Push to GitHub.
-- Deploy to Shopify (via Copy-Paste or GitHub integration).
-
+## Immediate Action
+- [ ] Decide if we creating a full Shopify Theme or just a Landing Page.
+- [ ] Connect GitHub Repository to remote.
