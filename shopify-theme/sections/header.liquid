@@ -1,0 +1,49 @@
+<nav class="sticky-nav">
+  <div class="nav-container">
+    <div class="logo">
+      <a href="/">{{ section.settings.logo_text }}<span class="dot">.</span></a>
+    </div>
+    
+    <ul class="nav-links">
+      {% for link in linklists[section.settings.menu].links %}
+        <li>
+          <a href="{{ link.url }}" {% if link.active %}class="active"{% endif %}>
+            {{ link.title }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <div class="nav-icons">
+      <a href="/account"><i class="fa-regular fa-user"></i></a>
+      <a href="/cart" class="cart-wrapper">
+        <i class="fa-solid fa-basket-shopping"></i>
+        <span class="cart-count">{{ cart.item_count }}</span>
+      </a>
+    </div>
+    
+    <div class="mobile-toggle">
+      <i class="fa-solid fa-bars"></i>
+    </div>
+  </div>
+</nav>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Logo Text",
+      "default": "Hermann"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}

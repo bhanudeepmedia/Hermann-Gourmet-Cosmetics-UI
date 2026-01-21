@@ -1,0 +1,32 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-joy",
+      "settings": {
+        "badge_text": "Since 2014",
+        "heading": "Skincare so fresh,<br>you could <em>eat it</em>.",
+        "subheading": "Handmade in Cyprus using grandmother's secret recipes and the finest organic botanicals. No nasties, just joy.",
+        "primary_button_text": "Shop The Menu",
+        "primary_button_link": "/collections/all",
+        "secondary_button_text": "Watch the Magic",
+        "secondary_button_link": "#video",
+        "trust_1": "PETA Approved",
+        "trust_2": "100% Natural",
+        "badge_circle_text": "FRESH • NATURAL • ORGANIC •",
+        "badge_emoji": "🌿"
+      }
+    },
+    "product-grid": {
+      "type": "product-grid",
+      "settings": {
+        "heading": "Fresh From The Kitchen",
+        "products_to_show": 4,
+        "view_all_link": "/collections/all"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "product-grid"
+  ]
+}

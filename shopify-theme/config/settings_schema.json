@@ -1,0 +1,50 @@
+[
+    {
+        "name": "theme_info",
+        "theme_name": "Hermann Gourmet",
+        "theme_version": "1.0.0",
+        "theme_author": "Hermann Cosmetics",
+        "theme_documentation_url": "",
+        "theme_support_url": ""
+    },
+    {
+        "name": "Colors",
+        "settings": [
+            {
+                "type": "header",
+                "content": "Brand Colors"
+            },
+            {
+                "type": "color",
+                "id": "color_cream",
+                "label": "Background Cream",
+                "default": "#FDFBF7"
+            },
+            {
+                "type": "color",
+                "id": "color_terracotta",
+                "label": "Accent Terracotta",
+                "default": "#D35E35"
+            },
+            {
+                "type": "color",
+                "id": "color_text",
+                "label": "Text Color",
+                "default": "#2C2623"
+            }
+        ]
+    },
+    {
+        "name": "Typography",
+        "settings": [
+            {
+                "type": "header",
+                "content": "Fonts are loaded from Google Fonts"
+            },
+            {
+                "type": "paragraph",
+                "content": "Heading: Fraunces | Body: Outfit"
+            }
+        ]
+    }
+]

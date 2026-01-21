@@ -1,0 +1,17 @@
+<div class="announcement-bar">
+  <span>{{ section.settings.announcement_text }}</span>
+</div>
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement Text",
+      "default": "✨ Free Shipping on orders over €50 • Freshly Batch Cooked Today! ✨"
+    }
+  ]
+}
+{% endschema %}

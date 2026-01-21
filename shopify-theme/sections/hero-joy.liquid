@@ -1,0 +1,124 @@
+<section class="hero-joy">
+  <div class="hero-grid">
+    <div class="hero-text">
+      <div class="hero-badge">{{ section.settings.badge_text }}</div>
+      <h1>{{ section.settings.heading }}</h1>
+      <p>{{ section.settings.subheading }}</p>
+      <div class="btn-group">
+        <a href="{{ section.settings.primary_button_link }}" class="btn-primary">
+          {{ section.settings.primary_button_text }}
+        </a>
+        <a href="{{ section.settings.secondary_button_link }}" class="btn-secondary">
+          <i class="fa-solid fa-play"></i> {{ section.settings.secondary_button_text }}
+        </a>
+      </div>
+      <div class="trust-indicators">
+        <span><i class="fa-solid fa-check"></i> {{ section.settings.trust_1 }}</span>
+        <span><i class="fa-solid fa-check"></i> {{ section.settings.trust_2 }}</span>
+      </div>
+    </div>
+    <div class="hero-visual-collage">
+      <div class="blob-bg"></div>
+      {% if section.settings.hero_image %}
+        <img src="{{ section.settings.hero_image | img_url: '800x' }}" alt="{{ section.settings.heading }}" class="hero-main-img floating">
+      {% endif %}
+      {% if section.settings.hero_small_image %}
+        <img src="{{ section.settings.hero_small_image | img_url: '400x' }}" alt="Ingredients" class="hero-small-img floating-delayed">
+      {% endif %}
+      <div class="sticker-badge">
+        <svg viewBox="0 0 100 100" class="rotate-text">
+          <path id="curve" d="M 25, 50 a 25,25 0 1,1 50,0 a 25,25 0 1,1 -50,0" fill="transparent" />
+          <text><textPath href="#curve">{{ section.settings.badge_circle_text }}</textPath></text>
+        </svg>
+        <div class="sticker-center">{{ section.settings.badge_emoji }}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero Joy",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge Text",
+      "default": "Since 2014"
+    },
+    {
+      "type": "html",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Skincare so fresh,<br>you could <em>eat it</em>."
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Handmade in Cyprus using grandmother's secret recipes and the finest organic botanicals. No nasties, just joy."
+    },
+    {
+      "type": "text",
+      "id": "primary_button_text",
+      "label": "Primary Button Text",
+      "default": "Shop The Menu"
+    },
+    {
+      "type": "url",
+      "id": "primary_button_link",
+      "label": "Primary Button Link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_text",
+      "label": "Secondary Button Text",
+      "default": "Watch the Magic"
+    },
+    {
+      "type": "url",
+      "id": "secondary_button_link",
+      "label": "Secondary Button Link"
+    },
+    {
+      "type": "text",
+      "id": "trust_1",
+      "label": "Trust Indicator 1",
+      "default": "PETA Approved"
+    },
+    {
+      "type": "text",
+      "id": "trust_2",
+      "label": "Trust Indicator 2",
+      "default": "100% Natural"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_small_image",
+      "label": "Small Image"
+    },
+    {
+      "type": "text",
+      "id": "badge_circle_text",
+      "label": "Circular Badge Text",
+      "default": "FRESH • NATURAL • ORGANIC •"
+    },
+    {
+      "type": "text",
+      "id": "badge_emoji",
+      "label": "Badge Emoji",
+      "default": "🌿"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Joy"
+    }
+  ]
+}
+{% endschema %}
