@@ -1,6 +1,6 @@
-// Initialize Lenis
+// Initialize Lenis Smooth Scroll
 const lenis = new Lenis({
-    duration: 1.5,
+    duration: 1.2,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     smoothWheel: true,
 });
@@ -11,99 +11,93 @@ function raf(time) {
 }
 requestAnimationFrame(raf);
 
-gsap.registerPlugin(ScrollTrigger, Draggable);
+// Register GSAP Plugins
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
-// Loader Animation
+// Cursor Logic
+const cursorDot = document.querySelector('.cursor-dot');
+const cursorFollower = document.querySelector('.cursor-follower');
+
+document.addEventListener('mousemove', (e) => {
+    gsap.to(cursorDot, { x: e.clientX, y: e.clientY, duration: 0 });
+    gsap.to(cursorFollower, { x: e.clientX, y: e.clientY, duration: 0.1 });
+});
+
+// Intro Sequence
 window.onload = () => {
     const tl = gsap.timeline();
+    let counter = { val: 0 };
 
-    tl.to(".loader-circle", {
-        scale: 50,
-        duration: 1.2,
-        ease: "power2.inOut"
+    tl.to(counter, {
+        val: 100,
+        duration: 2,
+        onUpdate: () => {
+            document.querySelector('.intro-counter').innerText = Math.floor(counter.val) + "%";
+        }
     })
-        .to(".loader-overlay", {
-            opacity: 0,
-            duration: 0.5,
-            pointerEvents: "none"
-        })
-        .from(".hero-img-inner", {
-            scale: 1.5,
-            y: 100,
-            duration: 1.5,
-            ease: "expo.out"
-        }, "-=1")
-        .from(".line-reveal", {
-            yPercent: 100,
-            opacity: 0,
-            stagger: 0.1,
-            duration: 1,
-            ease: "power3.out"
-        }, "-=1");
-}
+        .to('.intro-line', { width: '100%', duration: 1.5 }, "<")
+        .to('.intro-overlay', { yPercent: -100, duration: 1, ease: 'power4.inOut' })
+        .from('.hero-title span', { y: 100, opacity: 0, stagger: 0.2, duration: 1.5, ease: 'power3.out' })
+        .from('.hero-bottom-row', { opacity: 0, duration: 1 }, "-=1");
+};
 
-// Hero Mouse Move Parallax
-const heroSection = document.querySelector('.hero-heritage');
-const heroArch = document.querySelector('#heroArch');
+// Horizontal Scroll (Museum)
+const sections = gsap.utils.toArray('.museum-panel');
+gsap.to(sections, {
+    xPercent: -100 * (sections.length - 1),
+    ease: "none",
+    scrollTrigger: {
+        trigger: ".museum-section",
+        pin: true,
+        scrub: 1,
+        snap: 1 / (sections.length - 1),
+        end: "+=3500",
+    }
+});
 
-if (heroSection && heroArch) {
-    heroSection.addEventListener('mousemove', (e) => {
-        const x = (e.clientX / window.innerWidth - 0.5) * 20;
-        const y = (e.clientY / window.innerHeight - 0.5) * 20;
-
-        gsap.to(heroArch, {
-            x: x,
-            y: y,
-            duration: 1,
-            ease: "power2.out"
-        });
-    });
-}
-
-// Parallax Banner
-gsap.to(".parallax-bg", {
+// Parallax Effect
+gsap.to(".parallax-layer.bg img", {
     yPercent: 20,
     ease: "none",
     scrollTrigger: {
-        trigger: ".ingredients-banner",
-        start: "top bottom",
-        end: "bottom top",
+        trigger: ".immersive-story",
         scrub: true
     }
 });
 
-// Horizontal Gallery Scroll
-gsap.to(".gallery-track", {
-    xPercent: -20,
-    ease: "none",
-    scrollTrigger: {
-        trigger: ".gallery-section",
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 1
-    }
+// Magnetic Buttons
+document.querySelectorAll('.btn-magnetic').forEach(btn => {
+    btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+
+        gsap.to(btn, { x: x * 0.3, y: y * 0.3, duration: 0.3 });
+    });
+
+    btn.addEventListener('mouseleave', () => {
+        gsap.to(btn, { x: 0, y: 0, duration: 0.3 });
+    });
 });
 
-// Stagger Reveals for Journal
-gsap.from(".journal-card", {
-    y: 50,
-    opacity: 0,
-    duration: 1,
-    stagger: 0.2,
-    ease: "power2.out",
-    scrollTrigger: {
-        trigger: ".journal-grid",
-        start: "top 80%"
-    }
-});
+// 3D Tilt Effect on Cards (Vanilla JS optimized)
+document.querySelectorAll('.card-3d').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
 
-// Testimonial Fade Up
-gsap.from(".testimonial-card", {
-    y: 30,
-    opacity: 0,
-    duration: 1,
-    scrollTrigger: {
-        trigger: ".testimonials-section",
-        start: "top 70%"
-    }
+        const rotateX = ((y - centerY) / centerY) * -10;
+        const rotateY = ((x - centerX) / centerX) * 10;
+
+        card.querySelector('.card-3d-inner').style.transform =
+            `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+        card.querySelector('.card-3d-inner').style.transform =
+            `perspective(1000px) rotateX(0) rotateY(0)`;
+    });
 });
