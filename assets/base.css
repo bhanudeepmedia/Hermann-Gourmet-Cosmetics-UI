@@ -532,3 +532,20 @@ p {
         grid-template-columns: 1fr;
     }
 }
+/* --- REVEAL ANIMATIONS (Zielinski Style) --- */
+.reveal-element {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.reveal-element.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Specific Staggers for Hero */
+.hero-content h1.reveal-element { transition-delay: 0.1s; }
+.hero-content p.reveal-element { transition-delay: 0.2s; }
+.hero-content .btn-primary.reveal-element { transition-delay: 0.3s; }
