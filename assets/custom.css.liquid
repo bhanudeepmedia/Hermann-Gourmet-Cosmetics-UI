@@ -1,13 +1,14 @@
 /* =========================================
    PREMIUM LUXURY STYLES (V3)
-   Palette: Olive #263112 | Terracotta #884F4F
+   Palette: Olive #263112 | Terracotta #884F4F | Cream #FDFBF7
+   Design Direction: Zielinski & Rozen Replica (Clean, Editorial, Dark/Light Contrast)
    ========================================= */
 
 :root {
   /* Core Colors */
   --c-bg: {{ settings.color_background | default: '#FDFBF7' }};
   --c-text: {{ settings.color_text | default: '#263112' }};
-  --c-accent: {{ settings.color_accent | default: '#884F4F' }};
+  --c-accent: {{ settings.color_accent | default: '#263112' }}; /* Dark Olive is now the accent too */
   --c-taupe: {{ settings.color_secondary | default: '#866B67' }};
   
   /* UI Elements */
@@ -15,8 +16,8 @@
   --btn-text: {{ settings.btn_text | default: '#FFFFFF' }};
   
   /* Mobile Specific */
-  --mobile-bg: {{ settings.mobile_menu_bg | default: '#FDFBF7' }};
-  --mobile-text: {{ settings.mobile_menu_text | default: '#263112' }};
+  --mobile-bg: #263112; 
+  --mobile-text: #FFFFFF;
 
   /* Typography */
   --font-heading: {{ settings.font_heading.family }}, Serif;
@@ -28,14 +29,15 @@ body {
   color: var(--c-text);
   font-family: var(--font-body);
   line-height: 1.6;
-  overflow-x: hidden; /* Prevent horizontal scroll */
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   color: var(--c-text);
-  font-weight: 400; /* Luxury often uses lighter weights */
-  letter-spacing: -0.02em;
+  font-weight: 500; /* Slightly bolder for impact */
+  letter-spacing: -0.01em;
+  text-transform: uppercase; /* Zielinski style often uses uppercase headings */
 }
 
 /* --- PREMIUM ANIMATIONS --- */
@@ -51,24 +53,101 @@ h1, h2, h3, h4, h5, h6 {
 }
 {% endif %}
 
-/* --- BUTTONS --- */
-.btn-primary {
+/* --- BUTTONS (Refined for Minimalist/Editorial Look) --- */
+.btn-primary, .btn-secondary {
   background-color: var(--btn-bg);
   color: var(--btn-text);
-  padding: 1rem 2.5rem;
-  border-radius: 50px;
+  padding: 0.9rem 2rem;
+  border-radius: 2px; /* Square/Sharp corners like Zielinski */
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 0.8rem;
-  font-weight: 600;
+  letter-spacing: 1.2px;
+  font-size: 0.75rem;
+  font-weight: 700;
   border: 1px solid var(--btn-bg);
   transition: all 0.3s ease;
   display: inline-flex; align-items: center; justify-content: center;
+  cursor: pointer;
 }
-.btn-primary:hover {
+.btn-primary:hover, .btn-secondary:hover {
   background-color: transparent;
   color: var(--btn-bg);
-  transform: translateY(-2px);
+  transform: translateY(-1px);
+}
+
+/* --- PRODUCT CARD OVERRIDES (The "Zielinski" Look) --- */
+.product-card {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0 !important;
+  text-align: center;
+  transition: opacity 0.3s;
+}
+.product-card:hover {
+  opacity: 0.9;
+}
+.product-media {
+  background: transparent !important;
+  margin-bottom: 1.2rem;
+  overflow: hidden;
+}
+.product-media img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3/4 !important; /* Forces Portrait */
+  object-fit: cover;
+  border-radius: 0 !important; /* Sharp */
+}
+
+/* Product Titles */
+.product-info h3 {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin: 0.5rem 0;
+  text-transform: none; /* Keep product names natural mixed case */
+}
+.product-info h3 a {
+  color: var(--c-text);
+  text-decoration: none;
+}
+
+/* Product Price */
+.product-price {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #555;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+/* Add Button in Card */
+.product-card button[type="submit"] {
+  background: transparent !important;
+  color: var(--c-text) !important;
+  border: 1px solid rgba(0,0,0,0.2) !important;
+  border-radius: 2px !important;
+  padding: 0.5rem 1.5rem !important;
+  font-size: 0.7rem !important;
+  width: auto;
+}
+.product-card button[type="submit"]:hover {
+  border-color: var(--c-text) !important;
+  background: var(--c-text) !important;
+  color: white !important;
+}
+
+/* Badges */
+.badge {
+  border-radius: 0 !important;
+  font-size: 0.6rem !important;
+  letter-spacing: 1px;
+  padding: 4px 8px !important;
+  text-transform: uppercase;
+  background: #263112 !important; /* Dark Olive Badges */
+  color: white !important;
 }
 
 /* --- MOBILE VISIBILITY FIXES --- */
@@ -77,19 +156,20 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--mobile-text) !important;
 }
 .mobile-nav-toggle {
-  color: var(--c-text) !important;
+  color: var(--mobile-text) !important; /* White Icon on Mobile */
 }
 .mobile-links a {
   color: var(--mobile-text) !important;
 }
 
-/* --- BIG & BROAD LAYOUT --- */
+/* --- LAYOUT --- */
 .container {
-  max-width: 1440px; /* Wider canvas */
+  max-width: 1600px; /* Even wider for that editorial expanse */
   margin: 0 auto;
-  padding: 0 5%;
+  padding: 0 40px;
+}
+@media(max-width: 768px) {
+  .container { padding: 0 20px; }
 }
 
-.section {
-  padding: 6rem 0; /* More breathing room */
-}
+.section { padding: 5rem 0; }
