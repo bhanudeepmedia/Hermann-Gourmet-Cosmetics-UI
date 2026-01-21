@@ -6,13 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hermann Global | Cinematic Experience</title>
 
-    <!-- GSAP Core -->
+    <!-- GSAP (Standard Plugins Only) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/SplitText.min.js"></script>
-
-    <!-- Three.js for 3D Elements -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
     <!-- Lenis Smooth Scroll -->
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
@@ -25,6 +21,22 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="styles.css">
+
+    <style>
+        /* FALLBACK: If JS fails, these animations ensure content is visible */
+        .intro-overlay {
+            /* Force hide after 4 seconds if JS doesn't do it */
+            animation: safetyFadeOut 0.5s linear 3.5s forwards;
+        }
+
+        @keyframes safetyFadeOut {
+            to {
+                opacity: 0;
+                pointer-events: none;
+                visibility: hidden;
+            }
+        }
+    </style>
 </head>
 
 <body class="is-loading">
@@ -39,15 +51,11 @@
     <div class="cursor-follower"></div>
     <div class="cursor-dot"></div>
 
-    <!-- WebGL Background Container -->
-    <div id="canvas-container"></div>
-
     <main class="smooth-wrapper">
 
         <!-- Hero Section -->
         <section class="hero-cinematic">
             <div class="hero-video-container">
-                <!-- Using an image but animated like video -->
                 <div class="hero-img-zoom">
                     <img src="royal-hero.png" alt="Cinematic Statue">
                 </div>
@@ -63,6 +71,7 @@
                 <div class="hero-bottom-row">
                     <div class="scroll-prompt">
                         <div class="circle-text">
+                            <!-- Simple SVG rotation text -->
                             <svg viewBox="0 0 100 100">
                                 <path id="curve" d="M 25, 50 a 25,25 0 1,1 50,0 a 25,25 0 1,1 -50,0" fill="none" />
                                 <text>
@@ -84,7 +93,7 @@
                     <p>Grandmother's recipes, elevated for the modern ritual.</p>
                 </div>
 
-                <!-- 3D Card 1 -->
+                <!-- Card 1 -->
                 <div class="museum-panel product-panel">
                     <div class="card-3d">
                         <div class="card-3d-inner">
@@ -97,7 +106,7 @@
                     </div>
                 </div>
 
-                <!-- 3D Card 2 -->
+                <!-- Card 2 -->
                 <div class="museum-panel product-panel">
                     <div class="card-3d">
                         <div class="card-3d-inner">
@@ -110,7 +119,7 @@
                     </div>
                 </div>
 
-                <!-- 3D Card 3 -->
+                <!-- Card 3 -->
                 <div class="museum-panel product-panel">
                     <div class="card-3d">
                         <div class="card-3d-inner">
@@ -127,10 +136,10 @@
 
         <!-- Immersive Story (Parallax) -->
         <section class="immersive-story">
-            <div class="parallax-layer bg" data-speed="0.2">
+            <div class="parallax-layer bg">
                 <img src="ingredients-banner.png" alt="Ingredients">
             </div>
-            <div class="parallax-layer content" data-speed="0.5">
+            <div class="parallax-layer content">
                 <h2>100% Organic.<br>Cooked Fresh.</h2>
                 <button class="btn-magnetic">Read The Story</button>
             </div>
