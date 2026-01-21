@@ -1,8 +1,8 @@
 {% comment %}
-  Hermann Magical Header - Premium Pop-up Interaction
+  Hermann Magical Header - Premium Pop-up Interaction & Mobile Grid
 {% endcomment %}
 
-<header class="site-header" style="background-color: {{ section.settings.bg_color }}; position: sticky; top: 0; z-index: 1000;">
+<header class="site-header" style="background-color: {{ section.settings.bg_color }}; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.03);">
   
   <!-- MAIN HEADER BAR -->
   <div class="header-bar container">
@@ -10,7 +10,7 @@
     <!-- LEFT: The Magic Menu Trigger -->
     <div class="header-left">
         <button class="magic-menu-trigger" aria-label="Open Menu">
-            <span class="menu-label">MENU</span>
+            <span class="menu-label desktop-only">MENU</span>
             <div class="hamburger-icon">
                 <span></span><span></span><span></span>
             </div>
@@ -32,7 +32,7 @@
     <div class="header-right icons-wrapper">
       <button class="icon-btn search-trigger"><i class="fa-solid fa-magnifying-glass"></i></button>
       {% if shop.customer_accounts_enabled %}
-        <a href="{{ routes.account_url }}" class="icon-btn"><i class="fa-regular fa-user"></i></a>
+        <a href="{{ routes.account_url }}" class="icon-btn mobile-hidden"><i class="fa-regular fa-user"></i></a>
       {% endif %}
       <a href="{{ routes.cart_url }}" class="icon-btn cart-btn">
         <i class="fa-solid fa-basket-shopping"></i>
@@ -41,47 +41,49 @@
     </div>
   </div>
 
-  <!-- THE MAGICAL POP-UP OVERLAY -->
+  <!-- THE MAGICAL POP-UP OVERLAY (Desktop & Mobile Unified) -->
   <div class="magic-menu-overlay">
-      <button class="close-magic-menu">✕</button>
+      <div class="magic-header container">
+         <span class="mobile-menu-title">SHOP BY CATEGORY</span>
+         <button class="close-magic-menu">✕</button>
+      </div>
       
       <div class="magic-content container">
           <div class="magic-grid">
-              <!-- Left Column: Navigation with Icons -->
-              <div class="nav-column">
-                  <h3 class="menu-heading">Shop by Category</h3>
-                  <ul class="magic-nav-list">
+              <!-- Category Grid (Visual Blocks) -->
+              <div class="nav-grid-wrapper">
+                  <div class="category-grid">
                     {% for link in linklists[section.settings.menu].links %}
                         {% assign icon_class = "fa-solid fa-star" %}
                         {% assign handle = link.title | downcase %}
+                        
+                        {% comment %} Icon Mapping {% endcomment %}
                         {% if handle contains 'cream' %}{% assign icon_class = "fa-solid fa-pump-soap" %}
-                        {% elsif handle contains 'scrub' %}{% assign icon_class = "fa-solid fa-hands-bubbles" %}
+                        {% elsif handle contains 'body' %}{% assign icon_class = "fa-solid fa-hands-bubbles" %}
+                        {% elsif handle contains 'scrub' %}{% assign icon_class = "fa-solid fa-shower" %}
                         {% elsif handle contains 'soap' %}{% assign icon_class = "fa-solid fa-soap" %}
+                        {% elsif handle contains 'face' %}{% assign icon_class = "fa-regular fa-face-smile-beam" %}
                         {% elsif handle contains 'candle' %}{% assign icon_class = "fa-solid fa-fire" %}
                         {% elsif handle contains 'gift' %}{% assign icon_class = "fa-solid fa-gift" %}
                         {% elsif handle contains 'perfume' %}{% assign icon_class = "fa-solid fa-spray-can-sparkles" %}
+                        {% elsif handle contains 'story' %}{% assign icon_class = "fa-solid fa-book-open" %}
                         {% endif %}
 
-                        <li class="magic-item">
-                            <a href="{{ link.url }}" class="magic-link">
-                                <span class="magic-icon"><i class="{{ icon_class }}"></i></span>
-                                <span class="magic-text">{{ link.title }}</span>
-                            </a>
-                        </li>
+                        <a href="{{ link.url }}" class="category-card magic-item">
+                             <div class="card-icon">
+                                <i class="{{ icon_class }}"></i>
+                             </div>
+                             <span class="card-title">{{ link.title }}</span>
+                        </a>
                     {% endfor %}
-                  </ul>
+                  </div>
               </div>
 
-              <!-- Right Column: Featured (or Image) -->
+              <!-- Feature Side (Desktop Only) -->
               <div class="feature-column desktop-only">
                   <div class="menu-image-card">
-                     {% if section.settings.menu_image %}
-                        <img src="{{ section.settings.menu_image | img_url: '600x' }}" alt="Featured">
-                     {% else %}
-                        <div class="placeholder-art">HERMANN</div>
-                     {% endif %}
                      <div class="menu-caption">
-                         <p>Freshly Cooked Skincare</p>
+                         <h3>Freshly Cooked Skincare</h3>
                          <a href="/collections/all" class="btn-text">Shop All →</a>
                      </div>
                   </div>
@@ -90,9 +92,9 @@
       </div>
   </div>
 
-  <!-- Search Overlay (Separate) -->
+  <!-- Search Overlay -->
   <div class="search-modal">
-      <div class="container">
+      <div class="container relative">
           <form action="{{ routes.search_url }}" method="get">
               <input type="text" name="q" placeholder="Type to search..." autofocus>
               <button type="submit">Search</button>
@@ -104,104 +106,110 @@
 </header>
 
 <style>
-/* --- HEADER BAR STYLES --- */
-.site-header { font-family: var(--font-body); border-bottom: 1px solid rgba(0,0,0,0.05); background: white; }
-.header-bar { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; height: 90px; }
+/* --- HEADER BAR --- */
+.site-header { font-family: var(--font-body); background: white; }
+.header-bar { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; height: 80px; }
 
 .header-left, .header-right { flex: 1; }
 .header-center { flex: 2; text-align: center; }
-.header-right { display: flex; justify-content: flex-end; gap: 1.5rem; }
+.header-right { display: flex; justify-content: flex-end; gap: 1rem; }
 
-/* Trigger Button */
+/* Trigger */
 .magic-menu-trigger {
     background: none; border: none; cursor: pointer;
     display: flex; align-items: center; gap: 10px;
     font-family: var(--font-heading); font-size: 1rem; color: var(--c-text);
-    transition: color 0.3s;
 }
-.magic-menu-trigger:hover { color: var(--c-accent); }
-.hamburger-icon span { display: block; width: 20px; height: 2px; background: currentColor; margin: 4px 0; transition: 0.3s; }
-.magic-menu-trigger:hover .hamburger-icon span:nth-child(2) { width: 15px; } /* Little animation */
+.hamburger-icon span { display: block; width: 24px; height: 2px; background: currentColor; margin: 5px 0; transition: 0.3s; }
+.magic-menu-trigger:hover .hamburger-icon span:nth-child(2) { width: 18px; } 
 
 /* Logo */
-.logo-img { max-height: 60px; width: auto; }
-.logo-text { font-family: var(--font-heading); font-size: 2rem; }
+.logo-img { max-height: 55px; width: auto; }
+.logo-text { font-family: var(--font-heading); font-size: 1.8rem; }
 
 /* Icons */
-.icon-btn { background: none; border: none; font-size: 1.2rem; color: var(--c-text); cursor: pointer; position: relative; }
-.icon-btn:hover { color: var(--c-accent); transform: scale(1.1); transition: 0.2s; }
+.icon-btn { font-size: 1.3rem; color: var(--c-text); background:none; border:none; cursor: pointer; position: relative; }
 .cart-count { 
-    position: absolute; top: -5px; right: -8px; background: var(--c-accent); color: white;
-    font-size: 0.7rem; width: 16px; height: 16px; border-radius: 50%;
+    position: absolute; top: -5px; right: -8px; 
+    background: var(--c-accent); color: white;
+    font-size: 0.7rem; width: 18px; height: 18px; border-radius: 50%;
     display: flex; justify-content: center; align-items: center;
 }
 
-/* --- THE MAGICAL OVERLAY --- */
+/* --- MAGIC OVERLAY (Unified) --- */
 .magic-menu-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-    background: rgba(255,255,255,0.98); 
+    background: #FDFBF7; /* Cream Background */
     z-index: 2000;
-    opacity: 0; visibility: hidden;
-    transition: opacity 0.4s ease, visibility 0.4s;
+    opacity: 0; visibility: hidden; transform: translateX(-10%);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     overflow-y: auto;
 }
-.magic-menu-overlay.active { opacity: 1; visibility: visible; }
+.magic-menu-overlay.active { opacity: 1; visibility: visible; transform: translateX(0); }
 
-.close-magic-menu {
-    position: absolute; top: 2rem; right: 2rem;
-    font-size: 2rem; background: none; border: none; cursor: pointer; color: var(--c-text);
-    transition: transform 0.3s;
+.magic-header { padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid rgba(0,0,0,0.05); padding-bottom: 1rem; }
+.mobile-menu-title { font-family: var(--font-heading); font-size: 1.2rem; letter-spacing: 2px; color: var(--c-taupe); }
+.close-magic-menu { font-size: 2rem; background: none; border: none; cursor: pointer; color: var(--c-text); }
+
+.magic-content { padding-top: 2rem; padding-bottom: 4rem; }
+
+/* --- GRID MENU (Mobile & Desktop) --- */
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive Grid */
+    gap: 1.5rem;
 }
-.close-magic-menu:hover { transform: rotate(90deg) scale(1.1); color: var(--c-accent); }
 
-.magic-content { padding-top: 8rem; padding-bottom: 4rem; }
-.magic-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
-
-.menu-heading { font-family: var(--font-heading); font-size: 1rem; color: var(--c-taupe); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 2rem; border-bottom: 1px solid #eee; padding-bottom: 1rem; display: inline-block; }
-
-.magic-nav-list { list-style: none; padding: 0; }
-.magic-item { margin-bottom: 1rem; opacity: 0; transform: translateY(20px); transition: 0.4s ease; }
-/* Staggered Animation Logic in JS */
-
-.magic-link {
-    display: flex; align-items: center; gap: 1.5rem;
-    text-decoration: none; color: var(--c-text);
-    font-family: var(--font-heading); font-size: 2rem;
-    transition: transform 0.3s;
-    padding: 0.5rem 0;
+.category-card {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid rgba(0,0,0,0.02);
+    opacity: 0; transform: translateY(20px); /* For Animation */
 }
-.magic-link:hover { transform: translateX(20px); color: var(--c-accent); }
-.magic-icon { font-size: 1.5rem; opacity: 0.5; width: 30px; text-align: center; }
-.magic-link:hover .magic-icon { opacity: 1; color: var(--c-accent); }
+.category-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); border-color: var(--c-accent); }
+
+.card-icon { font-size: 2rem; color: var(--c-accent); margin-bottom: 1rem; }
+.card-title { font-family: var(--font-heading); font-size: 1.1rem; color: var(--c-text); text-align: center; }
 
 /* Feature Column */
-.menu-image-card { position: relative; border-radius: 8px; overflow: hidden; height: 400px; }
-.menu-image-card img { width: 100%; height: 100%; object-fit: cover; }
-.placeholder-art { width: 100%; height: 100%; background: #f4f4f4; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: #ddd; }
-.menu-caption {
-    position: absolute; bottom: 2rem; left: 2rem; 
-    background: white; padding: 1.5rem; border-radius: 4px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+.menu-image-card { 
+    background: #eee; height: 100%; min-height: 400px; border-radius: 12px; position: relative;
+    background-image: url('{{ section.settings.menu_image | img_url: "800x" }}');
+    background-size: cover; background-position: center;
+}
+.menu-caption { 
+    position: absolute; bottom: 2rem; left: 2rem; background: white; padding: 1.5rem; border-radius: 8px; 
 }
 
 /* Search Modal */
 .search-modal {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.95); z-index: 2500;
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.98); z-index: 2500;
     display: flex; align-items: center; justify-content: center;
     opacity: 0; visibility: hidden; transition: 0.3s;
 }
 .search-modal.active { opacity: 1; visibility: visible; }
-.search-modal input {
-    width: 100%; border: none; border-bottom: 2px solid var(--c-text); 
-    font-size: 3rem; font-family: var(--font-heading); background: transparent; outline: none;
-}
+.search-modal input { width: 100%; border: none; border-bottom: 2px solid var(--c-text); font-size: 2rem; font-family: var(--font-heading); background: transparent; outline: none; }
 .close-search { position: absolute; top: 2rem; right: 2rem; font-size: 2rem; background: none; border: none; cursor: pointer; }
 
-/* Responsive */
+/* --- MOBILE OPTIMIZATION --- */
 @media (max-width: 900px) {
-    .magic-grid { grid-template-columns: 1fr; }
-    .feature-column { display: none; }
-    .magic-link { font-size: 1.5rem; }
+    .magic-grid { grid-template-columns: 1fr; } /* Stack columns */
+    .feature-column { display: none; } /* Hide feature image on mobile to save space */
+    
+    .category-grid {
+        grid-template-columns: 1fr 1fr; /* 2 Columns on Mobile! Premium App Feel */
+        gap: 1rem;
+    }
+    .category-card { padding: 1.5rem 1rem; }
+    .card-icon { font-size: 1.5rem; }
+    .card-title { font-size: 0.9rem; }
+    
+    .mobile-hidden { display: none; } /* Hide Account icon on mobile if cramped */
     .menu-label { display: none; }
 }
 </style>
@@ -215,7 +223,7 @@
 
   function openMenu() {
       magicOverlay.classList.add('active');
-      // Staggered Animation
+      // Stagger animations
       magicItems.forEach((item, index) => {
           setTimeout(() => {
               item.style.opacity = '1';
@@ -237,7 +245,7 @@
       closeMagic.addEventListener('click', closeMenuFunc);
   }
 
-  // Search Trigger
+  // Search
   const searchBtn = document.querySelector('.search-trigger');
   const searchModal = document.querySelector('.search-modal');
   const closeSearchBtn = document.querySelector('.close-search');
@@ -245,7 +253,7 @@
   if(searchBtn) {
       searchBtn.addEventListener('click', () => {
           searchModal.classList.add('active');
-          searchModal.querySelector('input').focus();
+          setTimeout(() => searchModal.querySelector('input').focus(), 100);
       });
       closeSearchBtn.addEventListener('click', () => searchModal.classList.remove('active'));
   }
@@ -259,7 +267,7 @@
     { "type": "image_picker", "id": "logo", "label": "Logo" },
     { "type": "text", "id": "logo_text", "label": "Logo Text", "default": "HERMANN" },
     { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" },
-    { "type": "image_picker", "id": "menu_image", "label": "Menu Featured Image" }
+    { "type": "image_picker", "id": "menu_image", "label": "Featured Menu Image" }
   ]
 }
 {% endschema %}

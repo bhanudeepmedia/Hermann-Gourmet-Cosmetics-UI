@@ -97,7 +97,7 @@
           "type": "testimonial",
           "settings": {
             "quote": "This cream changed my skin completely! It's like a warm hug in a jar. I can actually feel the love and care that went into making it.",
-            "name": "Maria K.",
+            "author": "Maria K.",
             "location": "Athens, Greece"
           }
         },
@@ -105,7 +105,7 @@
           "type": "testimonial",
           "settings": {
             "quote": "I've never used anything so natural and effective. My grandmother would approve! The lavender scent takes me back to Cyprus.",
-            "name": "Sofia P.",
+            "author": "Sofia P.",
             "location": "Paphos, Cyprus"
           }
         },
@@ -113,24 +113,15 @@
           "type": "testimonial",
           "settings": {
             "quote": "The handmade soap smells like heaven. I'm obsessed and have already ordered 3 more!",
-            "name": "Elena M.",
+            "author": "Elena M.",
             "location": "London, UK"
-          }
-        },
-        "testimonial-4": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "Finally, skincare that's actually good enough to eat! My skin has never looked better.",
-            "name": "Anna T.",
-            "location": "Paris, France"
           }
         }
       },
       "block_order": [
         "testimonial-1",
         "testimonial-2",
-        "testimonial-3",
-        "testimonial-4"
+        "testimonial-3"
       ],
       "settings": {
         "heading": "Love Letters From Our Family",
@@ -146,6 +137,9 @@
         "button_text": "Shop New Arrivals",
         "button_link": "/collections/new-arrivals"
       }
+    },
+    "location-map": {
+      "type": "location-map"
     }
   },
   "order": [
@@ -155,6 +149,7 @@
     "image-banner",
     "product-grid",
     "testimonials",
-    "featured-collection-2"
+    "featured-collection-2",
+    "location-map"
   ]
 }
