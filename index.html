@@ -1,114 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hermann Gourmet Cosmetics | Premium Edition</title>
-    
-    <!-- Google Fonts -->
+    <title>Hermann Gourmet Cosmetics | The Art of Slow Beauty</title>
+
+    <!-- Premium Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="logo">HERMANN</div>
-        <div class="nav-links">
-            <a href="#">Shop</a>
-            <a href="#">Our Story</a>
-            <a href="#">Journal</a>
-        </div>
-        <div class="nav-actions">
-            <button class="cart-btn">Cart (0)</button>
-        </div>
-    </nav>
-
     <!-- Hero Section -->
-    <header class="hero-section">
-        <div class="hero-content">
-            <h1 class="hero-title">
-                Freshly <span class="accent-text">Cooked</span><br>
-                Cosmetics
-            </h1>
-            <p class="hero-subtitle">Handcrafted luxury from Cyprus. PETA approved, naturally sourced, and cooked to perfection.</p>
-            <a href="#shop" class="cta-button">Discover the Menu</a>
+    <header class="hero">
+        <div class="hero-bg">
+            <img src="vintage-podium.png" alt="Luxury Cosmetics Background">
         </div>
-        <div class="hero-image-container">
-            <!-- Placeholder for a high-end texture shot -->
-            <div class="hero-abstract-shape"></div>
+        <div class="hero-content">
+            <p class="hero-super-title">Est. 2014 • Cyprus</p>
+            <h1 class="hero-title">
+                Beauty That Feels<br>
+                <span>As Good As It Looks</span>
+            </h1>
+            <a href="#shop" class="btn btn-dark">Discover The Collection</a>
         </div>
     </header>
 
-    <!-- Featured Products (Marquee) -->
-    <section class="ticker-wrap">
-        <div class="ticker">
-            <div class="ticker__item">PETA Approved</div>
-            <div class="ticker__item">Handcrafted in Cyprus</div>
-            <div class="ticker__item">Natural Ingredients</div>
-            <div class="ticker__item">Freshly Cooked</div> 
-            <div class="ticker__item">PETA Approved</div>
-            <div class="ticker__item">Handcrafted in Cyprus</div>
-            <div class="ticker__item">Natural Ingredients</div>
-            <div class="ticker__item">Freshly Cooked</div> 
+    <!-- Marquee -->
+    <div class="marquee-section">
+        <div class="marquee-track">
+            <div class="marquee-item">Grandmother’s Secrets</div>
+            <div class="marquee-item">*</div>
+            <div class="marquee-item">Freshly Cooked</div>
+            <div class="marquee-item">*</div>
+            <div class="marquee-item">Timeless Elegance</div>
+            <div class="marquee-item">*</div>
+            <div class="marquee-item">Clean Conscience</div>
+            <div class="marquee-item">*</div>
+            <div class="marquee-item">Grandmother’s Secrets</div>
+            <div class="marquee-item">*</div>
+            <div class="marquee-item">Freshly Cooked</div>
+            <div class="marquee-item">*</div>
+            <div class="marquee-item">Timeless Elegance</div>
+        </div>
+    </div>
+
+    <!-- Story Section -->
+    <section class="split-section">
+        <div class="split-image">
+            <img src="heritage-story.png" alt="Vintage Mortar and Pestle">
+        </div>
+        <div class="split-content">
+            <span class="section-label">Our Philosophy</span>
+            <h2>Ancient Wisdom,<br>Modern Alchemy.</h2>
+            <p>Our formulas aren’t just made; they are inherited. Inspired by grandmother’s secret recipes and the rich
+                flora of Cyprus, we cook our cosmetics fresh, using traditional methods and the finest natural
+                ingredients.</p>
+            <p>No shortcuts. No fillers. Just pure, timeless beauty in a jar.</p>
+            <a href="#" class="btn">Read Our Story</a>
+        </div>
+    </section>
+
+    <!-- Visual Break -->
+    <section class="visual-break">
+        <div class="visual-text">
+            <h2>Luxury is a Feeling.</h2>
         </div>
     </section>
 
     <!-- Product Showcase -->
     <section class="product-showcase" id="shop">
-        <div class="section-header">
-            <h2>Our Specialties</h2>
-            <a href="#" class="view-all">View All Products</a>
+        <div class="showcase-header">
+            <span class="section-label">The Collection</span>
+            <h2>Curated Essentials</h2>
         </div>
-        
+
         <div class="product-grid">
-            <!-- Product Card 1 -->
+            <!-- Product 1 -->
             <div class="product-card">
-                <div class="card-image"></div>
-                <div class="card-info">
-                    <h3>Bee Ageless Face Cream</h3>
-                    <p class="price">€45.00</p>
-                    <button class="add-btn">Add to Cart</button>
+                <div class="product-image">
+                    <!-- Placeholder using the texture for now, in real life these are product shots -->
+                    <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=1887&auto=format&fit=crop"
+                        alt="Bee Ageless Cream">
+                </div>
+                <div class="product-info">
+                    <h3>Bee Ageless Cream</h3>
+                    <p class="product-price">€45.00</p>
                 </div>
             </div>
-            
-            <!-- Product Card 2 -->
+
+            <!-- Product 2 -->
             <div class="product-card">
-                <div class="card-image"></div>
-                <div class="card-info">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1608248597279-f99d160bfbc8?q=80&w=2670&auto=format&fit=crop"
+                        alt="Golden Body Scrub">
+                </div>
+                <div class="product-info">
                     <h3>Golden Berry Scrub</h3>
-                    <p class="price">€32.00</p>
-                    <button class="add-btn">Add to Cart</button>
+                    <p class="product-price">€32.00</p>
                 </div>
             </div>
 
-            <!-- Product Card 3 -->
+            <!-- Product 3 -->
             <div class="product-card">
-                <div class="card-image"></div>
-                <div class="card-info">
-                    <h3>Velvet Rose Body Balm</h3>
-                    <p class="price">€38.00</p>
-                    <button class="add-btn">Add to Cart</button>
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?q=80&w=1887&auto=format&fit=crop"
+                        alt="Rose Velvet Balm">
+                </div>
+                <div class="product-info">
+                    <h3>Velvet Rose Balm</h3>
+                    <p class="product-price">€38.00</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Brand Philosophy -->
-    <section class="philosophy-section">
-        <div class="philosophy-content">
-            <h2>The Art of  <br><em>Slow Beauty</em></h2>
-            <p>We believe in the power of fresh ingredients. Our cosmetics are not just manufactured; they are cooked. Like a gourmet meal for your skin, every jar is packed with nutrient-rich botanicals, essential oils, and love.</p>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h2>HERMANN</h2>
+                    <p>Artisanal cosmetics cooked with love and heritage in Cyprus.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="#">Face</a></li>
+                        <li><a href="#">Body</a></li>
+                        <li><a href="#">Gifts</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">Our Story</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Social</h4>
+                    <ul>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Pinterest</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2024 Hermann Gourmet Cosmetics. All Rights Reserved.
+            </div>
         </div>
-    </section>
-
-    <footer class="footer">
-        <p>&copy; 2024 Hermann Gourmet Cosmetics. All Rights Reserved.</p>
     </footer>
 
     <script src="script.js"></script>
 </body>
+
 </html>
