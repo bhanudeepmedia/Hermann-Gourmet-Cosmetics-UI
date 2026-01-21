@@ -1,0 +1,49 @@
+<section class="section">
+  <div class="container">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem;">
+      <h2>Fresh From The Kitchen</h2>
+      <a href="/collections/all" style="text-decoration: underline; font-size: 0.9rem;">View All</a>
+    </div>
+
+    <div class="grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
+       {% assign collection = collections['all'] %}
+       {% if collection.products.size > 0 %}
+          {% for product in collection.products limit: 4 %}
+             <div class="product-card">
+               <div class="product-media">
+                 <a href="{{ product.url }}">
+                   <img src="{{ product.featured_image | img_url: '600x' }}" alt="{{ product.title }}">
+                 </a>
+               </div>
+               <div class="product-info">
+                 <h3 class="product-title"><a href="{{ product.url }}">{{ product.title }}</a></h3>
+                 <span class="product-price">{{ product.price | money }}</span>
+               </div>
+             </div>
+          {% endfor %}
+       {% else %}
+          <!-- Empty State for Visual Preview -->
+           <div class="product-card">
+             <div class="product-media"><img src="//placehold.it/600x800" style="background:#ddd;"></div>
+             <div class="product-info"><h3 class="product-title">Wild Mint Face Soap</h3><span class="product-price">€24.00</span></div>
+           </div>
+           <div class="product-card">
+             <div class="product-media"><img src="//placehold.it/600x800" style="background:#ddd;"></div>
+             <div class="product-info"><h3 class="product-title">Bee Day Cream</h3><span class="product-price">€45.00</span></div>
+           </div>
+           <div class="product-card">
+             <div class="product-media"><img src="//placehold.it/600x800" style="background:#ddd;"></div>
+             <div class="product-info"><h3 class="product-title">Lavender Body Butter</h3><span class="product-price">€32.00</span></div>
+           </div>
+           <div class="product-card">
+             <div class="product-media"><img src="//placehold.it/600x800" style="background:#ddd;"></div>
+             <div class="product-info"><h3 class="product-title">Rose Night ELixir</h3><span class="product-price">€55.00</span></div>
+           </div>
+       {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Featured Grid", "presets": [{"name": "Featured Grid"}] }
+{% endschema %}

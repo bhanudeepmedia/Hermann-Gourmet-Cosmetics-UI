@@ -1,18 +1,58 @@
 <header class="site-header">
-  <div class="container header-wrapper">
-    <div class="header-left">
-      <button style="background:none; border:none; color:white; font-family:'Outfit'; cursor:pointer;">
-        <i class="fa-solid fa-bars"></i> MENU
-      </button>
+  <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+    
+    <!-- LEFT: Main Nav (Zielinski Style) -->
+    <nav class="desktop-nav" style="display: flex; align-items: center;">
+      {% for link in linklists.main-menu.links %}
+      <div class="nav-item" style="position: relative;">
+        <a href="{{ link.url }}" class="nav-link">{{ link.title }}</a>
+        
+        {%- if link.links != blank -%}
+          <div class="mega-menu" style="
+            position: absolute; 
+            top: 100%; left: 0; 
+            background: var(--c-bg); 
+            border: 1px solid var(--c-border); 
+            padding: 2rem; 
+            width: 300px; 
+            opacity: 0; 
+            pointer-events: none; 
+            transition: 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+          ">
+            {% for child in link.links %}
+              <a href="{{ child.url }}" style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">{{ child.title }}</a>
+            {% endfor %}
+          </div>
+        {%- endif -%}
+      </div>
+      {% endfor %}
+    </nav>
+    
+    <!-- CENTER: Brand Logo -->
+    <div class="logo-wrapper">
+      <a href="/" style="font-family: var(--f-heading); font-size: 2rem; letter-spacing: 0.05em; font-weight: 300;">
+        HERMANN
+      </a>
     </div>
-    <div class="header-center">
-      <a href="/" class="logo">HERMANN</a>
+
+    <!-- RIGHT: Utility Icons -->
+    <div class="utils" style="display: flex; gap: 1.5rem; align-items: center;">
+      <a href="/search"><i class="fa-solid fa-magnifying-glass"></i></a>
+      <a href="/account"><i class="fa-regular fa-user"></i></a>
+      <a href="/cart" class="cart-btn" style="position: relative;">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span style="font-size: 0.7rem; position: absolute; top: -5px; right: -8px;">({{ cart.item_count }})</span>
+      </a>
     </div>
-    <div class="header-right">
-      <a href="/cart" style="color:white;"><i class="fa-solid fa-bag-shopping"></i></a>
-    </div>
+
   </div>
 </header>
+
+<style>
+/* Mega Menu Hover Logic */
+.nav-item:hover .mega-menu { opacity: 1; pointer-events: auto; transform: translateY(10px); }
+</style>
 
 {% schema %}
 { "name": "Header", "settings": [] }
