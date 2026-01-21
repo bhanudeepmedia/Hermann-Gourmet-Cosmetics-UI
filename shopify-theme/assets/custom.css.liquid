@@ -1,0 +1,77 @@
+/* =========================================
+   CUSTOM SETTINGS OVERRIDES
+   Maps Schema settings to CSS Variables
+   ========================================= */
+:root {
+  /* --- COLORS --- */
+  --c-cream: {{ settings.color_background | default: '#FDFBF7' }};
+  --c-text: {{ settings.color_text | default: '#2C1810' }};
+  --c-accent: {{ settings.color_accent | default: '#D35E35' }};
+  --c-sage: {{ settings.color_secondary | default: '#8B9D83' }};
+  --c-sand: {{ settings.color_sand | default: '#E8DCC4' }};
+  
+  /* --- BUTTONS --- */
+  --btn-primary-bg: {{ settings.btn_primary_bg | default: settings.color_accent }};
+  --btn-primary-text: {{ settings.btn_primary_text | default: '#FFFFFF' }};
+  --btn-secondary-border: {{ settings.btn_secondary_border | default: settings.color_text }};
+  
+  /* --- FOOTER --- */
+  --footer-bg: {{ settings.footer_bg | default: settings.color_text }};
+  --footer-text: {{ settings.footer_text | default: '#FFFFFF' }};
+
+  /* --- FONTS --- */
+  --font-heading: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }};
+  --font-body: {{ settings.font_body.family }}, {{ settings.font_body.fallback_families }};
+  
+  /* --- GRADIENTS --- */
+  {% if settings.color_background_gradient != blank %}
+    --bg-gradient: {{ settings.color_background_gradient }};
+  {% endif %}
+}
+
+/* Apply Gradient if set */
+{% if settings.color_background_gradient != blank %}
+body {
+  background: var(--bg-gradient);
+}
+{% else %}
+body {
+  background-color: var(--c-cream);
+}
+{% endif %}
+
+h1, h2, h3, h4, .font-heading {
+  font-family: var(--font-heading);
+}
+
+body, p, a, .font-body {
+  font-family: var(--font-body);
+}
+
+/* Button Overrides */
+.btn-primary {
+  background-color: var(--btn-primary-bg) !important;
+  color: var(--btn-primary-text) !important;
+}
+
+.btn-secondary {
+  border-color: var(--btn-secondary-border) !important;
+  color: var(--btn-secondary-border) !important;
+}
+.btn-secondary:hover {
+  background-color: var(--btn-secondary-border) !important;
+  color: var(--c-cream) !important;
+}
+
+/* Footer Override */
+.site-footer {
+  background-color: var(--footer-bg) !important;
+  color: var(--footer-text) !important;
+}
+.site-footer a {
+  color: var(--footer-text) !important;
+  opacity: 0.8;
+}
+.site-footer a:hover {
+  opacity: 1;
+}

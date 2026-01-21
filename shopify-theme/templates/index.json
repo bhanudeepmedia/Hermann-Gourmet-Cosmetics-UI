@@ -16,17 +16,145 @@
         "badge_emoji": "🌿"
       }
     },
+    "featured-collection-1": {
+      "type": "featured-collection",
+      "settings": {
+        "heading": "Bestsellers",
+        "subheading": "Our most-loved products that customers can't get enough of",
+        "products_to_show": 6,
+        "button_text": "View All Bestsellers",
+        "button_link": "/collections/best-sellers"
+      }
+    },
+    "process": {
+      "type": "process-steps",
+      "blocks": {
+        "step-1": {
+          "type": "step",
+          "settings": {
+            "emoji": "🌿",
+            "title": "Harvest",
+            "description": "We source the finest organic ingredients from local Mediterranean farms and gardens."
+          }
+        },
+        "step-2": {
+          "type": "step",
+          "settings": {
+            "emoji": "🍯",
+            "title": "Mix",
+            "description": "Each batch is handcrafted using grandmother's secret recipes passed down through generations."
+          }
+        },
+        "step-3": {
+          "type": "step",
+          "settings": {
+            "emoji": "🧴",
+            "title": "Pour",
+            "description": "Carefully packaged with love and attention to every detail."
+          }
+        },
+        "step-4": {
+          "type": "step",
+          "settings": {
+            "emoji": "💝",
+            "title": "Deliver",
+            "description": "Shipped fresh to your door, ready to transform your skincare routine."
+          }
+        }
+      },
+      "block_order": [
+        "step-1",
+        "step-2",
+        "step-3",
+        "step-4"
+      ],
+      "settings": {
+        "heading": "We Don't Manufacture. We Cook.",
+        "subheading": "Every product is handcrafted in small batches using traditional methods"
+      }
+    },
+    "image-banner": {
+      "type": "image-banner",
+      "settings": {
+        "heading": "From Our Island to Your Skin",
+        "text": "Discover the Mediterranean beauty secrets that have been cherished for generations in Cyprus.",
+        "button_text": "Our Story",
+        "button_link": "/pages/our-story"
+      }
+    },
     "product-grid": {
       "type": "product-grid",
       "settings": {
         "heading": "Fresh From The Kitchen",
-        "products_to_show": 4,
+        "products_to_show": 8,
         "view_all_link": "/collections/all"
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "blocks": {
+        "testimonial-1": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "This cream changed my skin completely! It's like a warm hug in a jar. I can actually feel the love and care that went into making it.",
+            "name": "Maria K.",
+            "location": "Athens, Greece"
+          }
+        },
+        "testimonial-2": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "I've never used anything so natural and effective. My grandmother would approve! The lavender scent takes me back to Cyprus.",
+            "name": "Sofia P.",
+            "location": "Paphos, Cyprus"
+          }
+        },
+        "testimonial-3": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "The handmade soap smells like heaven. I'm obsessed and have already ordered 3 more!",
+            "name": "Elena M.",
+            "location": "London, UK"
+          }
+        },
+        "testimonial-4": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Finally, skincare that's actually good enough to eat! My skin has never looked better.",
+            "name": "Anna T.",
+            "location": "Paris, France"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial-1",
+        "testimonial-2",
+        "testimonial-3",
+        "testimonial-4"
+      ],
+      "settings": {
+        "heading": "Love Letters From Our Family",
+        "subheading": "Hear what our customers have to say about their Hermann experience"
+      }
+    },
+    "featured-collection-2": {
+      "type": "featured-collection",
+      "settings": {
+        "heading": "New Arrivals",
+        "subheading": "Fresh batches just out of the kitchen",
+        "products_to_show": 4,
+        "button_text": "Shop New Arrivals",
+        "button_link": "/collections/new-arrivals"
       }
     }
   },
   "order": [
     "hero",
-    "product-grid"
+    "featured-collection-1",
+    "process",
+    "image-banner",
+    "product-grid",
+    "testimonials",
+    "featured-collection-2"
   ]
 }

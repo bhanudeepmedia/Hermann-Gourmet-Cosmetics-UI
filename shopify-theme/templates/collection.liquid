@@ -1,0 +1,132 @@
+<div class="collection-page">
+  <div class="collection-header">
+    <h1>{{ collection.title }}</h1>
+    {% if collection.description != blank %}
+      <div class="collection-description">{{ collection.description }}</div>
+    {% endif %}
+  </div>
+
+  <div class="collection-layout">
+    <!-- Sidebar Filters -->
+    <aside class="collection-filters">
+      <div class="filter-group">
+        <h4>Filter By</h4>
+        <div class="filter-section">
+          <h5>Availability</h5>
+          <label><input type="checkbox" name="in-stock"> In Stock</label>
+        </div>
+        <div class="filter-section">
+          <h5>Price</h5>
+          <input type="range" min="0" max="100" class="price-range">
+        </div>
+      </div>
+    </aside>
+
+    <!-- Products Grid -->
+    <div class="collection-products">
+      <div class="collection-toolbar">
+        <span>{{ collection.products_count }} products</span>
+        <select class="sort-by">
+          <option>Best Selling</option>
+          <option>Price: Low to High</option>
+          <option>Price: High to Low</option>
+          <option>Newest</option>
+        </select>
+      </div>
+
+      <div class="product-grid">
+        {% for product in collection.products %}
+          <div class="product-card-fun">
+            <div class="p-image">
+              {% if product.tags contains 'bestseller' %}
+                <span class="tag-bestseller">Best Seller</span>
+              {% elsif product.tags contains 'new' %}
+                <span class="tag-new">New Batch</span>
+              {% endif %}
+              
+              <a href="{{ product.url }}">
+                {% if product.featured_image %}
+                  <img src="{{ product.featured_image | img_url: '600x' }}" alt="{{ product.title }}" loading="lazy">
+                {% else %}
+                  {{ 'product-1' | placeholder_svg_tag }}
+                {% endif %}
+              </a>
+              
+              <button class="quick-add" data-product-id="{{ product.id }}">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+            <div class="p-info">
+              <h3><a href="{{ product.url }}">{{ product.title }}</a></h3>
+              <p>{{ product.metafields.custom.subtitle | default: product.description | strip_html | truncate: 40 }}</p>
+              <div class="price">{{ product.price | money }}</div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      {% if paginate.pages > 1 %}
+        <div class="pagination">
+          {{ paginate | default_pagination }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<style>
+  .collection-header {
+    text-align: center;
+    padding: 4rem 5% 2rem;
+  }
+  .collection-header h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  .collection-layout {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 3rem;
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding: 2rem 5%;
+  }
+  .collection-filters {
+    position: sticky;
+    top: 120px;
+    height: fit-content;
+  }
+  .filter-group h4 {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+  }
+  .filter-section {
+    margin-bottom: 2rem;
+  }
+  .filter-section h5 {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+  .collection-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+  }
+  .sort-by {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  @media (max-width: 900px) {
+    .collection-layout {
+      grid-template-columns: 1fr;
+    }
+    .collection-filters {
+      display: none;
+    }
+  }
+</style>

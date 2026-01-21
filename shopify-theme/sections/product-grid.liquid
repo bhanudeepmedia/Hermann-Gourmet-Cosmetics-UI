@@ -1,57 +1,30 @@
-<section class="section shop-section" id="shop">
+<section class="section product-grid-section">
   <div class="container">
-    <div class="section-header">
+    <div class="flex-between" style="margin-bottom: 3rem;">
       <h2>{{ section.settings.heading }}</h2>
       {% if section.settings.view_all_link %}
-        <a href="{{ section.settings.view_all_link }}" class="link-arrow">View All Products →</a>
+        <a href="{{ section.settings.view_all_link }}" class="btn-secondary" style="font-size: 0.9rem; padding: 0.5rem 1.5rem;">
+          View All <i class="fa-solid fa-arrow-right" style="margin-left: 5px;"></i>
+        </a>
       {% endif %}
     </div>
     
-    <div class="product-grid">
-      {% if section.settings.collection %}
+    <div class="product-grid-container">
+      {% if section.settings.collection != blank %}
         {% assign collection = collections[section.settings.collection] %}
         {% for product in collection.products limit: section.settings.products_to_show %}
-          <div class="product-card-fun">
-            <div class="p-image">
-              {% if product.tags contains 'bestseller' %}
-                <span class="tag-bestseller">Best Seller</span>
-              {% elsif product.tags contains 'new' %}
-                <span class="tag-new">New Batch</span>
-              {% endif %}
-              
-              <a href="{{ product.url }}">
-                {% if product.featured_image %}
-                  <img src="{{ product.featured_image | img_url: '600x' }}" alt="{{ product.title }}">
-                {% else %}
-                  {{ 'product-1' | placeholder_svg_tag }}
-                {% endif %}
-              </a>
-              
-              <button class="quick-add" data-product-id="{{ product.id }}">
-                <i class="fa-solid fa-plus"></i>
-              </button>
-            </div>
-            <div class="p-info">
-              {% if product.metafields.custom.rating %}
-                <div class="stars">{{ product.metafields.custom.rating }}</div>
-              {% endif %}
-              <h3><a href="{{ product.url }}">{{ product.title }}</a></h3>
-              <p>{{ product.metafields.custom.subtitle | default: product.description | strip_html | truncate: 40 }}</p>
-              <div class="price">{{ product.price | money }}</div>
-            </div>
-          </div>
+          {% render 'product-card', product: product %}
         {% endfor %}
       {% else %}
-        {% comment %} Placeholder products {% endcomment %}
+        <!-- Fallback Placeholder Products -->
         {% for i in (1..4) %}
-          <div class="product-card-fun">
-            <div class="p-image">
+          <div class="product-card">
+            <div class="product-media">
               {{ 'product-' | append: i | placeholder_svg_tag }}
             </div>
-            <div class="p-info">
+            <div class="product-info">
               <h3>Sample Product {{ i }}</h3>
-              <p>Product description</p>
-              <div class="price">€45.00</div>
+              <p class="product-price">€45.00</p>
             </div>
           </div>
         {% endfor %}
@@ -78,16 +51,16 @@
     {
       "type": "range",
       "id": "products_to_show",
-      "label": "Products to Show",
-      "min": 2,
+      "label": "Products",
+      "min": 4,
       "max": 12,
-      "step": 1,
+      "step": 4,
       "default": 4
     },
     {
       "type": "url",
       "id": "view_all_link",
-      "label": "View All Link"
+      "label": "Link"
     }
   ],
   "presets": [

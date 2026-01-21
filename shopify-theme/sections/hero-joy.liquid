@@ -1,40 +1,151 @@
-<section class="hero-joy">
-  <div class="hero-grid">
-    <div class="hero-text">
+<div class="section hero-section">
+  <div class="container hero-wrapper">
+    <!-- Text Content -->
+    <div class="hero-content">
       <div class="hero-badge">{{ section.settings.badge_text }}</div>
       <h1>{{ section.settings.heading }}</h1>
       <p>{{ section.settings.subheading }}</p>
-      <div class="btn-group">
+      
+      <div class="flex" style="gap: 1rem; margin-bottom: 2rem;">
         <a href="{{ section.settings.primary_button_link }}" class="btn-primary">
           {{ section.settings.primary_button_text }}
         </a>
         <a href="{{ section.settings.secondary_button_link }}" class="btn-secondary">
-          <i class="fa-solid fa-play"></i> {{ section.settings.secondary_button_text }}
+          <i class="fa-solid fa-play" style="margin-right: 8px;"></i> {{ section.settings.secondary_button_text }}
         </a>
       </div>
-      <div class="trust-indicators">
-        <span><i class="fa-solid fa-check"></i> {{ section.settings.trust_1 }}</span>
-        <span><i class="fa-solid fa-check"></i> {{ section.settings.trust_2 }}</span>
+
+      <div class="trust-indicators flex" style="gap: 2rem; opacity: 0.8; font-weight: 600; font-size: 0.9rem;">
+        <span><i class="fa-solid fa-check" style="color: var(--c-accent);"></i> {{ section.settings.trust_1 }}</span>
+        <span><i class="fa-solid fa-check" style="color: var(--c-accent);"></i> {{ section.settings.trust_2 }}</span>
       </div>
     </div>
-    <div class="hero-visual-collage">
+
+    <!-- Visual Content -->
+    <div class="hero-image-container">
       <div class="blob-bg"></div>
+      
       {% if section.settings.hero_image %}
         <img src="{{ section.settings.hero_image | img_url: '800x' }}" alt="{{ section.settings.heading }}" class="hero-main-img floating">
+      {% else %}
+        <img src="{{ 'royal-hero.png' | asset_url }}" alt="Hero Image" class="hero-main-img floating">
       {% endif %}
+
       {% if section.settings.hero_small_image %}
-        <img src="{{ section.settings.hero_small_image | img_url: '400x' }}" alt="Ingredients" class="hero-small-img floating-delayed">
+        <img src="{{ section.settings.hero_small_image | img_url: '400x' }}" alt="Detail" class="hero-small-img floating-delayed">
+      {% else %}
+        <img src="{{ 'vintage-podium.png' | asset_url }}" alt="Detail" class="hero-small-img floating-delayed">
       {% endif %}
+
+      <!-- Rotating Badge -->
       <div class="sticker-badge">
         <svg viewBox="0 0 100 100" class="rotate-text">
           <path id="curve" d="M 25, 50 a 25,25 0 1,1 50,0 a 25,25 0 1,1 -50,0" fill="transparent" />
-          <text><textPath href="#curve">{{ section.settings.badge_circle_text }}</textPath></text>
+          <text width="500">
+            <textPath href="#curve" startOffset="50%" text-anchor="middle">
+              {{ section.settings.badge_circle_text }}
+            </textPath>
+          </text>
         </svg>
         <div class="sticker-center">{{ section.settings.badge_emoji }}</div>
       </div>
     </div>
   </div>
-</section>
+</div>
+
+<style>
+  .hero-badge {
+    display: inline-block;
+    background: var(--c-sand);
+    padding: 6px 16px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+  }
+
+  .blob-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%;
+    height: 120%;
+    background: #E8DCCF;
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    z-index: -1;
+    animation: morph 8s ease-in-out infinite alternate;
+    opacity: 0.6;
+  }
+
+  .hero-small-img {
+    position: absolute;
+    bottom: -40px;
+    right: -20px;
+    width: 180px;
+    border: 8px solid white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    z-index: 2;
+  }
+
+  .sticker-badge {
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    width: 140px;
+    height: 140px;
+    background: #F2C94C;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    z-index: 3;
+    animation: rotate 20s linear infinite;
+  }
+
+  .rotate-text text {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    fill: var(--c-text);
+  }
+
+  .sticker-center {
+    position: absolute;
+    font-size: 2.5rem;
+  }
+
+  /* Animations */
+  @keyframes morph {
+    0% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+    100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .floating { animation: float 6s ease-in-out infinite; }
+  .floating-delayed { animation: float 7s ease-in-out 1s infinite; }
+
+  @media (max-width: 768px) {
+    .blob-bg { width: 100%; height: 100%; top: 0; left: 0; transform: none; }
+    .hero-small-img { width: 120px; bottom: -20px; right: 0; }
+    .sticker-badge { width: 100px; height: 100px; top: -10px; right: -10px; }
+    .sticker-center { font-size: 1.8rem; }
+  }
+</style>
 
 {% schema %}
 {
@@ -56,63 +167,63 @@
       "type": "textarea",
       "id": "subheading",
       "label": "Subheading",
-      "default": "Handmade in Cyprus using grandmother's secret recipes and the finest organic botanicals. No nasties, just joy."
+      "default": "Handmade in Cyprus using grandmother's secret recipes."
     },
     {
       "type": "text",
       "id": "primary_button_text",
-      "label": "Primary Button Text",
+      "label": "Button 1 Text",
       "default": "Shop The Menu"
     },
     {
       "type": "url",
       "id": "primary_button_link",
-      "label": "Primary Button Link"
+      "label": "Button 1 Link"
     },
     {
       "type": "text",
       "id": "secondary_button_text",
-      "label": "Secondary Button Text",
-      "default": "Watch the Magic"
+      "label": "Button 2 Text",
+      "default": "Our Story"
     },
     {
       "type": "url",
       "id": "secondary_button_link",
-      "label": "Secondary Button Link"
-    },
-    {
-      "type": "text",
-      "id": "trust_1",
-      "label": "Trust Indicator 1",
-      "default": "PETA Approved"
-    },
-    {
-      "type": "text",
-      "id": "trust_2",
-      "label": "Trust Indicator 2",
-      "default": "100% Natural"
-    },
-    {
-      "type": "image_picker",
-      "id": "hero_image",
-      "label": "Hero Image"
-    },
-    {
-      "type": "image_picker",
-      "id": "hero_small_image",
-      "label": "Small Image"
+      "label": "Button 2 Link"
     },
     {
       "type": "text",
       "id": "badge_circle_text",
-      "label": "Circular Badge Text",
+      "label": "Spinning Text",
       "default": "FRESH • NATURAL • ORGANIC •"
     },
     {
       "type": "text",
       "id": "badge_emoji",
-      "label": "Badge Emoji",
+      "label": "Badge Center",
       "default": "🌿"
+    },
+    {
+      "type": "text",
+      "id": "trust_1",
+      "label": "Trust Text 1",
+      "default": "PETA Approved"
+    },
+    {
+      "type": "text",
+      "id": "trust_2",
+      "label": "Trust Text 2",
+      "default": "100% Natural"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Main Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_small_image",
+      "label": "Small Image"
     }
   ],
   "presets": [

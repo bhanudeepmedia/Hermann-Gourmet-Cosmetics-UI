@@ -4,18 +4,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="theme-color" content="#FDFBF7">
+    <meta name="theme-color" content="{{ settings.color_background }}">
     <link rel="canonical" href="{{ canonical_url }}">
 
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | img_url: '32x32' }}">
     {%- endif -%}
 
-    {%- unless settings.type_header_font.system? -%}
-      <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
-    {%- endunless -%}
-
-    <title>{{ page_title }}{% if current_page != 1 %} &ndash; {{ 'general.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}</title>
+    <title>{{ page_title }}{% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}</title>
 
     {% if page_description %}
       <meta name="description" content="{{ page_description | escape }}">
@@ -23,7 +19,7 @@
 
     {% render 'meta-tags' %}
 
-    <!-- Fonts -->
+    <!-- Google Fonts Fallback -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
@@ -37,9 +33,19 @@
 
     {{ content_for_header }}
 
-    {{ 'styles.css' | asset_url | stylesheet_tag }}
+    <!-- CORE STYLES (Static - Never Breaks) -->
+    {{ 'base.css' | asset_url | stylesheet_tag }}
+    
+    <!-- CUSTOM STYLES (Dynamic - Colors/Fonts) -->
+    {{ 'custom.css' | asset_url | stylesheet_tag }}
     
     <script src="{{ 'script.js' | asset_url }}" defer="defer"></script>
+
+    <style>
+      :root {
+        --page-width: {{ settings.page_width | default: 1400 }}px;
+      }
+    </style>
   </head>
 
   <body class="template-{{ template.name }}">
@@ -50,12 +56,15 @@
     <!-- Navigation -->
     {% section 'header' %}
 
-    <main role="main">
+    <main role="main" id="MainContent">
       {{ content_for_layout }}
     </main>
 
     <!-- Footer -->
     {% section 'footer' %}
+    
+    <!-- Magic Cursor -->
+    {% render 'cursor-effect' %}
 
   </body>
 </html>

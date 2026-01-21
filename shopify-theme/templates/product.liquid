@@ -1,0 +1,240 @@
+<div class="product-page">
+  <div class="product-container">
+    <!-- Product Images -->
+    <div class="product-gallery">
+      <div class="main-image">
+        {% if product.featured_image %}
+          <img src="{{ product.featured_image | img_url: '800x' }}" alt="{{ product.title }}" id="mainProductImage">
+        {% else %}
+          {{ 'product-1' | placeholder_svg_tag }}
+        {% endif %}
+      </div>
+      
+      {% if product.images.size > 1 %}
+        <div class="thumbnail-gallery">
+          {% for image in product.images %}
+            <img src="{{ image | img_url: '150x' }}" 
+                 alt="{{ product.title }}" 
+                 onclick="document.getElementById('mainProductImage').src='{{ image | img_url: '800x' }}'">
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- Product Info -->
+    <div class="product-details">
+      <h1>{{ product.title }}</h1>
+      
+      {% if product.metafields.custom.subtitle %}
+        <p class="product-subtitle">{{ product.metafields.custom.subtitle }}</p>
+      {% endif %}
+
+      <div class="product-price">
+        <span class="price">{{ product.price | money }}</span>
+        {% if product.compare_at_price > product.price %}
+          <span class="compare-price">{{ product.compare_at_price | money }}</span>
+        {% endif %}
+      </div>
+
+      {% if product.tags contains 'bestseller' %}
+        <span class="badge bestseller-badge">✨ Best Seller</span>
+      {% elsif product.tags contains 'new' %}
+        <span class="badge new-badge">🌿 New Batch</span>
+      {% endif %}
+
+      <div class="product-description">
+        {{ product.description }}
+      </div>
+
+      <!-- Add to Cart Form -->
+      {% form 'product', product %}
+        <div class="product-options">
+          {% unless product.has_only_default_variant %}
+            {% for option in product.options_with_values %}
+              <div class="option-group">
+                <label>{{ option.name }}</label>
+                <select name="options[{{ option.name }}]">
+                  {% for value in option.values %}
+                    <option value="{{ value }}">{{ value }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            {% endfor %}
+          {% endunless %}
+
+          <div class="quantity-selector">
+            <label>Quantity</label>
+            <input type="number" name="quantity" value="1" min="1">
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary add-to-cart-btn">
+          <i class="fa-solid fa-basket-shopping"></i>
+          Add to Cart
+        </button>
+      {% endform %}
+
+      <!-- Product Meta -->
+      <div class="product-meta">
+        {% if product.metafields.custom.ingredients %}
+          <details>
+            <summary>🌿 Ingredients</summary>
+            <p>{{ product.metafields.custom.ingredients }}</p>
+          </details>
+        {% endif %}
+        
+        <details>
+          <summary>📦 Shipping & Returns</summary>
+          <p>Free shipping on orders over $50. 30-day return policy.</p>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Products -->
+  {% if product.collections.first %}
+    <div class="related-products">
+      <h2>You Might Also Love</h2>
+      <div class="product-grid">
+        {% for related_product in product.collections.first.products limit: 4 %}
+          {% unless related_product.id == product.id %}
+            <div class="product-card-fun">
+              <div class="p-image">
+                <a href="{{ related_product.url }}">
+                  <img src="{{ related_product.featured_image | img_url: '400x' }}" alt="{{ related_product.title }}">
+                </a>
+              </div>
+              <div class="p-info">
+                <h3><a href="{{ related_product.url }}">{{ related_product.title }}</a></h3>
+                <div class="price">{{ related_product.price | money }}</div>
+              </div>
+            </div>
+          {% endunless %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+</div>
+
+<style>
+  .product-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding: 4rem 5%;
+  }
+  .product-gallery {
+    position: sticky;
+    top: 120px;
+    height: fit-content;
+  }
+  .main-image img {
+    width: 100%;
+    border-radius: 12px;
+  }
+  .thumbnail-gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  .thumbnail-gallery img {
+    width: 100%;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .thumbnail-gallery img:hover {
+    transform: scale(1.05);
+  }
+  .product-details h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .product-subtitle {
+    color: var(--sage);
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+  }
+  .product-price {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+  }
+  .compare-price {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 1.5rem;
+    margin-left: 1rem;
+  }
+  .badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+  .bestseller-badge {
+    background: var(--orange);
+    color: white;
+  }
+  .new-badge {
+    background: var(--sage);
+    color: white;
+  }
+  .product-options {
+    margin: 2rem 0;
+  }
+  .option-group {
+    margin-bottom: 1.5rem;
+  }
+  .option-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  .option-group select,
+  .quantity-selector input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #eee;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+  .add-to-cart-btn {
+    width: 100%;
+    padding: 1.25rem;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+  .product-meta details {
+    border-top: 1px solid #eee;
+    padding: 1rem 0;
+  }
+  .product-meta summary {
+    cursor: pointer;
+    font-weight: 600;
+    user-select: none;
+  }
+  .related-products {
+    max-width: var(--page-width);
+    margin: 4rem auto;
+    padding: 0 5%;
+  }
+  .related-products h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  @media (max-width: 900px) {
+    .product-container {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .product-gallery {
+      position: relative;
+      top: 0;
+    }
+  }
+</style>
