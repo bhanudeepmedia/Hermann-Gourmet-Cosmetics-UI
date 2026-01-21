@@ -43,8 +43,35 @@
 
     <style>
       :root {
-        --page-width: {{ settings.page_width | default: 1400 }}px;
+        --page-width: {{ settings.page_width | default: 1600 }}px;
+        --c-text: #FDFBF7; /* Cream Text Default for Dark Mode */
+        --c-bg: #263112; /* Dark Olive Background */
+        --font-heading: 'Fraunces', serif;
+        --font-body: 'Outfit', sans-serif;
       }
+      
+      /* FORCE DARK OLIVE THEME (Zielinski Style) */
+      body { background-color: #FDFBF7; color: #263112; } /* Cream Body */
+
+      /* HEADER FORCE */
+      .site-header { background-color: #263112 !important; color: white !important; }
+      .header-bar a, .header-bar button, .header-bar i, .header-bar span { color: white !important; }
+      .logo-img { filter: brightness(0) invert(1) !important; }
+
+      /* FOOTER FORCE */
+      .site-footer { background-color: #263112 !important; color: #FDFBF7 !important; }
+      .site-footer a, .site-footer h4, .site-footer p { color: #FDFBF7 !important; }
+      .site-footer input { color: white !important; border-bottom: 1px solid rgba(255,255,255,0.3) !important; }
+      
+      /* PRODUCT CARD FORCE (Minimalist) */
+      .product-card { background: transparent !important; box-shadow: none !important; border: none !important; }
+      .product-media img { aspect-ratio: 3/4 !important; object-fit: cover !important; border-radius: 0 !important; }
+      .product-info h3 { font-family: 'Fraunces', serif !important; text-transform: none !important; font-size: 1.1rem !important; margin-top: 1rem !important; }
+      .product-price { color: #555 !important; font-weight: 400 !important; }
+      .badge { background: #263112 !important; color: white !important; border-radius: 0 !important; }
+
+      /* BUTTONS */
+      .btn-primary, .btn-secondary { border-radius: 2px !important; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
     </style>
   </head>
 
