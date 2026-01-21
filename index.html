@@ -4,26 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hermann Gourmet Cosmetics | The Warm Heritage</title>
+    <title>Hermann Gourmet Cosmetics | The Heritage Collection</title>
 
-    <!-- GSAP for High-End Animations -->
+    <!-- GSAP & Lenis -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
 
-    <!-- Google Fonts: Playfair Display + Lato -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
         rel="stylesheet">
 
     <link rel="stylesheet" href="styles.css">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body class="is-loading">
 
-    <!-- Geometric Wipe Loader -->
+    <!-- Loader -->
     <div class="loader-overlay">
         <div class="loader-circle"></div>
     </div>
@@ -33,16 +36,17 @@
         <div class="nav-logo">Hermann.</div>
         <div class="nav-actions">
             <span class="nav-item">Shop</span>
-            <span class="nav-item">Story</span>
-            <span class="nav-item cart-icon">Cart (0)</span>
+            <span class="nav-item">Journal</span>
+            <span class="nav-item">Our Story</span>
+            <span class="nav-item cart-icon"><i class="fa-solid fa-bag-shopping"></i> (0)</span>
         </div>
     </nav>
 
     <main>
 
-        <!-- Hero: Warm Hug -->
+        <!-- Hero: Interactive Mouse Move -->
         <section class="hero-heritage" data-scroll-section>
-            <div class="hero-arch-window">
+            <div class="hero-arch-window" id="heroArch">
                 <img src="vintage-podium.png" alt="Vintage Heritage Product" class="hero-img-inner">
             </div>
 
@@ -62,7 +66,10 @@
                     <span class="line-reveal">Secret Recipes</span>
                 </h1>
                 <p class="heritage-subtitle">Freshly cooked skincare from the heart of Cyprus.</p>
-                <button class="btn-heritage">Taste the Menu</button>
+                <div class="hero-btns">
+                    <button class="btn-heritage primary">Taste the Menu</button>
+                    <button class="btn-heritage secondary"><i class="fa-solid fa-play"></i> Our Story</button>
+                </div>
             </div>
         </section>
 
@@ -74,81 +81,220 @@
             </div>
         </div>
 
-        <!-- Geometric Gallery (Collage) -->
-        <section class="geo-gallery" data-scroll-section>
-            <div class="geo-shape circle-shape">
-                <img src="heritage-story.png" alt="Herbs">
-            </div>
-            <div class="geo-shape arch-shape">
-                <img src="warm-geometry.png" alt="Architecture">
-            </div>
-            <div class="geo-text-block">
-                <h2>A Hug for <br>Your Skin</h2>
-                <p>We believe skincare should feel like home. Warm, comforting, and made with love. Our formulations
-                    bring together the finest botanicals in a symphony of texture and scent.</p>
+        <!-- Philosophy Section -->
+        <section class="philosophy-section section-padding" data-scroll-section>
+            <div class="container-narrow">
+                <span class="eyebrow">The Philosophy</span>
+                <h2>"We don't manufacture cosmetics.<br>We cook them."</h2>
+                <p class="philo-desc">In a world of mass production, we choose the slow path. Every jar is a labor of
+                    love, blending the finest botanicals with heritage recipes passed down through generations.</p>
+                <div class="signature">Hermann Family</div>
             </div>
         </section>
 
-        <!-- Product Cards: The Recipe Cards -->
-        <section class="recipe-cards-section" data-scroll-section>
-            <h2>The Menu</h2>
+        <!-- Product Showcase (Carousel) -->
+        <section class="product-showcase section-padding" data-scroll-section>
+            <div class="section-header">
+                <h2>The Menu</h2>
+                <a href="#" class="view-all-link">View All Products <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
             <div class="cards-container">
                 <!-- Card 1 -->
                 <div class="recipe-card">
                     <div class="card-outline">
+                        <div class="card-top">
+                            <span class="tag">Bestseller</span>
+                            <i class="fa-regular fa-heart"></i>
+                        </div>
                         <div class="card-img-mask">
                             <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=1887&auto=format&fit=crop"
                                 alt="Cream">
                         </div>
                         <div class="card-details">
-                            <h3>Bee Ageless</h3>
-                            <span class="price">€45.00</span>
-                            <div class="add-line">Add to Basket</div>
+                            <h3>Bee Ageless Face Cream</h3>
+                            <p class="short-desc">Anti-aging royal jelly formula.</p>
+                            <div class="price-row">
+                                <span class="price">€45.00</span>
+                                <button class="add-btn-mini">+</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-
                 <!-- Card 2 -->
                 <div class="recipe-card">
                     <div class="card-outline">
+                        <div class="card-top">
+                            <span class="tag">New</span>
+                            <i class="fa-regular fa-heart"></i>
+                        </div>
                         <div class="card-img-mask pill-mask">
                             <img src="https://images.unsplash.com/photo-1608248597279-f99d160bfbc8?q=80&w=2670&auto=format&fit=crop"
                                 alt="Scrub">
                         </div>
                         <div class="card-details">
-                            <h3>Golden Scrub</h3>
-                            <span class="price">€32.00</span>
-                            <div class="add-line">Add to Basket</div>
+                            <h3>Golden Berry Scrub</h3>
+                            <p class="short-desc">Exfoliating gold dust polish.</p>
+                            <div class="price-row">
+                                <span class="price">€32.00</span>
+                                <button class="add-btn-mini">+</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-
                 <!-- Card 3 -->
                 <div class="recipe-card">
                     <div class="card-outline">
+                        <div class="card-top">
+                            <span class="tag">Limited</span>
+                            <i class="fa-regular fa-heart"></i>
+                        </div>
                         <div class="card-img-mask arch-mask">
                             <img src="https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?q=80&w=1887&auto=format&fit=crop"
                                 alt="Balm">
                         </div>
                         <div class="card-details">
-                            <h3>Velvet Rose</h3>
-                            <span class="price">€38.00</span>
-                            <div class="add-line">Add to Basket</div>
+                            <h3>Velvet Rose Balm</h3>
+                            <p class="short-desc">Deep hydration body butter.</p>
+                            <div class="price-row">
+                                <span class="price">€38.00</span>
+                                <button class="add-btn-mini">+</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Fresh Ingredients Banner -->
+        <section class="ingredients-banner" data-scroll-section>
+            <div class="parallax-bg-wrapper">
+                <img src="ingredients-banner.png" alt="Ingredients" class="parallax-bg">
+            </div>
+            <div class="banner-content">
+                <h2>100% Natural Ingredients</h2>
+                <div class="ingredient-list">
+                    <span><i class="fa-solid fa-leaf"></i> Organic Herbs</span>
+                    <span><i class="fa-solid fa-droplet"></i> Essential Oils</span>
+                    <span><i class="fa-solid fa-seedling"></i> Plant Extracts</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials-section section-padding" data-scroll-section>
+            <div class="container-narrow">
+                <span class="eyebrow">Love Notes</span>
+                <div class="testimonial-slider">
+                    <div class="testimonial-card active">
+                        <div class="stars">★★★★★</div>
+                        <p class="review-text">"The Bee Ageless cream changed my life. It feels so luxurious and smells
+                            like a garden in Cyprus. Truly a warm hug for my skin."</p>
+                        <div class="reviewer">- Elena M.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Journal / Blog -->
+        <section class="journal-section section-padding" data-scroll-section>
+            <div class="section-header">
+                <h2>The Journal</h2>
+            </div>
+            <div class="journal-grid">
+                <article class="journal-card">
+                    <div class="j-img"><img src="heritage-story.png" alt="Story"></div>
+                    <div class="j-content">
+                        <span class="date">Oct 12, 2024</span>
+                        <h3>The History of Rose Water in Cyprus</h3>
+                        <a href="#" class="read-more">Read Article</a>
+                    </div>
+                </article>
+                <article class="journal-card">
+                    <div class="j-img"><img src="warm-geometry.png" alt="Arch"></div>
+                    <div class="j-content">
+                        <span class="date">Sep 28, 2024</span>
+                        <h3>Why We "Cook" Our Cosmetics</h3>
+                        <a href="#" class="read-more">Read Article</a>
+                    </div>
+                </article>
+                <article class="journal-card">
+                    <div class="j-img"><img
+                            src="https://images.unsplash.com/photo-1556228852-6d35a585d566?q=80&w=1887&auto=format&fit=crop"
+                            alt="Lab"></div>
+                    <div class="j-content">
+                        <span class="date">Sep 15, 2024</span>
+                        <h3>Sustainability: Beyond the Jar</h3>
+                        <a href="#" class="read-more">Read Article</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Gallery & Instagram -->
+        <section class="gallery-section" data-scroll-section>
+            <div class="insta-header">
+                <i class="fa-brands fa-instagram"></i> @hermanncosmetics
+            </div>
+            <div class="gallery-track">
+                <img src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?q=80&w=1887&auto=format&fit=crop"
+                    alt="Visual 1">
+                <img src="https://images.unsplash.com/photo-1571781565023-40f8d4752541?q=80&w=2670&auto=format&fit=crop"
+                    alt="Visual 2">
+                <img src="cream-texture-gold.png" alt="Texture">
+                <img src="https://images.unsplash.com/photo-1556228720-19cb731fa2eb?q=80&w=1887&auto=format&fit=crop"
+                    alt="Visual 3">
+                <img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?q=80&w=2666&auto=format&fit=crop"
+                    alt="Visual 4">
+            </div>
+        </section>
+
+        <!-- Map Section -->
+        <section class="map-section" data-scroll-section>
+            <div class="map-container">
+                <div class="map-info-card">
+                    <h3>Visit Us</h3>
+                    <p>12 Heritage Street,<br>Nicosia, Cyprus</p>
+                    <p>Mon-Fri: 10am - 7pm</p>
+                    <button class="btn-heritage small">Get Directions</button>
+                </div>
+                <img src="cyprus-map.png" alt="Map Location" class="map-img">
+            </div>
+        </section>
+
         <!-- Footer -->
-        <footer class="footer-warm">
-            <div class="footer-logo">Hermann.</div>
-            <p>Made with Love in Cyprus.</p>
+        <footer class="main-footer">
+            <div class="footer-cols">
+                <div class="f-col">
+                    <h3>Hermann.</h3>
+                    <p>Artisanal skincare cooked with love.</p>
+                </div>
+                <div class="f-col">
+                    <h4>Shop</h4>
+                    <a href="#">Face</a>
+                    <a href="#">Body</a>
+                    <a href="#">Sets</a>
+                </div>
+                <div class="f-col">
+                    <h4>Company</h4>
+                    <a href="#">Story</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Journal</a>
+                </div>
+                <div class="f-col">
+                    <h4>Newsletter</h4>
+                    <div class="newsletter-input">
+                        <input type="email" placeholder="Your email">
+                        <button>→</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2024 Hermann Gourmet Cosmetics.
+            </div>
         </footer>
 
     </main>
 
-    <!-- Grain Overlay for texture -->
     <div class="paper-texture"></div>
 
     <script src="script.js"></script>

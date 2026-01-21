@@ -11,7 +11,7 @@ function raf(time) {
 }
 requestAnimationFrame(raf);
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, Draggable);
 
 // Loader Animation
 window.onload = () => {
@@ -42,44 +42,68 @@ window.onload = () => {
         }, "-=1");
 }
 
-// Parallax for Hero Arch
-gsap.to(".hero-arch-window", {
-    yPercent: 30,
+// Hero Mouse Move Parallax
+const heroSection = document.querySelector('.hero-heritage');
+const heroArch = document.querySelector('#heroArch');
+
+if (heroSection && heroArch) {
+    heroSection.addEventListener('mousemove', (e) => {
+        const x = (e.clientX / window.innerWidth - 0.5) * 20;
+        const y = (e.clientY / window.innerHeight - 0.5) * 20;
+
+        gsap.to(heroArch, {
+            x: x,
+            y: y,
+            duration: 1,
+            ease: "power2.out"
+        });
+    });
+}
+
+// Parallax Banner
+gsap.to(".parallax-bg", {
+    yPercent: 20,
     ease: "none",
     scrollTrigger: {
-        trigger: ".hero-heritage",
-        start: "top top",
+        trigger: ".ingredients-banner",
+        start: "top bottom",
         end: "bottom top",
         scrub: true
     }
 });
 
-// Geometric Gallery Parallax
-gsap.to(".circle-shape", {
-    y: -100,
+// Horizontal Gallery Scroll
+gsap.to(".gallery-track", {
+    xPercent: -20,
+    ease: "none",
     scrollTrigger: {
-        trigger: ".geo-gallery",
-        scrub: 1.5
-    }
-});
-
-gsap.to(".arch-shape", {
-    y: 50,
-    scrollTrigger: {
-        trigger: ".geo-gallery",
+        trigger: ".gallery-section",
+        start: "top bottom",
+        end: "bottom top",
         scrub: 1
     }
 });
 
-// Recipe Cards Stagger Reveal
-gsap.from(".recipe-card", {
-    y: 100,
+// Stagger Reveals for Journal
+gsap.from(".journal-card", {
+    y: 50,
     opacity: 0,
     duration: 1,
     stagger: 0.2,
     ease: "power2.out",
     scrollTrigger: {
-        trigger: ".recipe-cards-section",
+        trigger: ".journal-grid",
+        start: "top 80%"
+    }
+});
+
+// Testimonial Fade Up
+gsap.from(".testimonial-card", {
+    y: 30,
+    opacity: 0,
+    duration: 1,
+    scrollTrigger: {
+        trigger: ".testimonials-section",
         start: "top 70%"
     }
 });
