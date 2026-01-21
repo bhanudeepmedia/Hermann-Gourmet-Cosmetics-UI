@@ -1,55 +1,104 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Parallax Effect for Visual Break
-    const visualBreak = document.querySelector('.visual-break');
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const speed = 0.5;
-        if (visualBreak) {
-            // Simple background position shift
-            visualBreak.style.backgroundPosition = `center ${-(scrolled * speed) * 0.1}px`;
-        }
-    });
+// Initialize Lenis for Smooth Scrolling
+const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    orientation: 'vertical',
+    gestureOrientation: 'vertical',
+    smoothWheel: true,
+    smoothTouch: false,
+    touchMultiplier: 2,
+});
 
-    // Fade Up Animation Observer
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px" // Trigger slightly before element comes into view
-    };
+function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+}
 
-    const fadeInObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-                fadeInObserver.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
+requestAnimationFrame(raf);
 
-    const animatedElements = document.querySelectorAll('.split-content, .product-card, .footer-brand');
-    animatedElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
-        fadeInObserver.observe(el);
-    });
+// Register GSAP Plugins
+gsap.registerPlugin(ScrollTrigger);
 
-    // Custom Cursor (Optional - for that "Haptic" visual feel)
-    /* 
-    const cursor = document.createElement('div');
-    cursor.style.width = '20px';
-    cursor.style.height = '20px';
-    cursor.style.border = '1px solid #000';
-    cursor.style.borderRadius = '50%';
-    cursor.style.position = 'fixed';
-    cursor.style.pointerEvents = 'none';
-    cursor.style.zIndex = '9999';
-    cursor.style.transition = 'transform 0.1s ease';
-    document.body.appendChild(cursor);
+// Loader Animation
+window.addEventListener("load", () => {
+    const tl = gsap.timeline();
 
-    document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-    });
-    */
+    tl.to(".loader-bar", {
+        width: "100%",
+        duration: 1.5,
+        ease: "power2.inOut"
+    })
+        .to(".loader-text", {
+            y: -50,
+            opacity: 0,
+            duration: 0.5
+        })
+        .to(".loader", {
+            yPercent: -100,
+            duration: 1,
+            ease: "power4.inOut"
+        }, "-=0.2")
+        .from(".hero-title .word", {
+            y: 150,
+            opacity: 0,
+            duration: 1.5,
+            stagger: 0.2,
+            ease: "power4.out"
+        }, "-=0.5")
+        .from(".hero-img", {
+            scale: 1.2,
+            duration: 2,
+            ease: "expo.out"
+        }, "-=1.5");
+});
+
+// Parallax Hero
+gsap.to(".hero-img", {
+    yPercent: 20,
+    ease: "none",
+    scrollTrigger: {
+        trigger: ".hero",
+        start: "top top",
+        end: "bottom top",
+        scrub: true
+    }
+});
+
+// Horizontal Scroll for Menu
+let sections = gsap.utils.toArray(".scroller-card");
+
+gsap.to(sections, {
+    xPercent: -100 * (sections.length - 1),
+    ease: "none",
+    scrollTrigger: {
+        trigger: ".menu-scroller",
+        pin: true,
+        scrub: 1,
+        snap: 1 / (sections.length - 1),
+        end: "+=3000", /* Controls the speed of scroll */
+    }
+});
+
+// Curtain Reveal
+gsap.timeline({
+    scrollTrigger: {
+        trigger: ".philosophy",
+        start: "top 80%",
+        end: "top 30%",
+        scrub: 1
+    }
+})
+    .to(".curtain-l", { width: "0%" })
+    .to(".curtain-r", { width: "0%" }, "<"); // Run simultaneously
+
+// Footer Text Reveal
+gsap.from(".footer-title", {
+    y: 100,
+    opacity: 0,
+    duration: 1,
+    scrollTrigger: {
+        trigger: ".footer-royal",
+        start: "top center",
+        toggleActions: "play none none reverse"
+    }
 });

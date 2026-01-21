@@ -4,162 +4,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hermann Gourmet Cosmetics | The Art of Slow Beauty</title>
+    <title>Hermann Gourmet Cosmetics | Royal Edition</title>
 
-    <!-- Premium Fonts -->
+    <!-- GSAP for High-End Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+
+    <!-- Google Fonts: Source Serif 4 + Figtree -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,900;1,8..60,400&display=swap"
         rel="stylesheet">
 
     <link rel="stylesheet" href="styles.css">
 </head>
 
-<body>
+<body class="is-loading">
 
-    <!-- Hero Section -->
-    <header class="hero">
-        <div class="hero-bg">
-            <img src="vintage-podium.png" alt="Luxury Cosmetics Background">
-        </div>
-        <div class="hero-content">
-            <p class="hero-super-title">Est. 2014 • Cyprus</p>
-            <h1 class="hero-title">
-                Beauty That Feels<br>
-                <span>As Good As It Looks</span>
-            </h1>
-            <a href="#shop" class="btn btn-dark">Discover The Collection</a>
-        </div>
-    </header>
-
-    <!-- Marquee -->
-    <div class="marquee-section">
-        <div class="marquee-track">
-            <div class="marquee-item">Grandmother’s Secrets</div>
-            <div class="marquee-item">*</div>
-            <div class="marquee-item">Freshly Cooked</div>
-            <div class="marquee-item">*</div>
-            <div class="marquee-item">Timeless Elegance</div>
-            <div class="marquee-item">*</div>
-            <div class="marquee-item">Clean Conscience</div>
-            <div class="marquee-item">*</div>
-            <div class="marquee-item">Grandmother’s Secrets</div>
-            <div class="marquee-item">*</div>
-            <div class="marquee-item">Freshly Cooked</div>
-            <div class="marquee-item">*</div>
-            <div class="marquee-item">Timeless Elegance</div>
-        </div>
+    <!-- Loading Screen -->
+    <div class="loader">
+        <div class="loader-text">HERMANN</div>
+        <div class="loader-bar"></div>
     </div>
 
-    <!-- Story Section -->
-    <section class="split-section">
-        <div class="split-image">
-            <img src="heritage-story.png" alt="Vintage Mortar and Pestle">
+    <!-- Navigation -->
+    <nav class="nav-fixed">
+        <div class="nav-logo">Hermann.</div>
+        <div class="nav-menu">
+            <div class="menu-line"></div>
+            <div class="menu-line"></div>
         </div>
-        <div class="split-content">
-            <span class="section-label">Our Philosophy</span>
-            <h2>Ancient Wisdom,<br>Modern Alchemy.</h2>
-            <p>Our formulas aren’t just made; they are inherited. Inspired by grandmother’s secret recipes and the rich
-                flora of Cyprus, we cook our cosmetics fresh, using traditional methods and the finest natural
-                ingredients.</p>
-            <p>No shortcuts. No fillers. Just pure, timeless beauty in a jar.</p>
-            <a href="#" class="btn">Read Our Story</a>
-        </div>
-    </section>
+    </nav>
 
-    <!-- Visual Break -->
-    <section class="visual-break">
-        <div class="visual-text">
-            <h2>Luxury is a Feeling.</h2>
-        </div>
-    </section>
+    <main class="main-content">
 
-    <!-- Product Showcase -->
-    <section class="product-showcase" id="shop">
-        <div class="showcase-header">
-            <span class="section-label">The Collection</span>
-            <h2>Curated Essentials</h2>
-        </div>
-
-        <div class="product-grid">
-            <!-- Product 1 -->
-            <div class="product-card">
-                <div class="product-image">
-                    <!-- Placeholder using the texture for now, in real life these are product shots -->
-                    <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=1887&auto=format&fit=crop"
-                        alt="Bee Ageless Cream">
-                </div>
-                <div class="product-info">
-                    <h3>Bee Ageless Cream</h3>
-                    <p class="product-price">€45.00</p>
-                </div>
+        <!-- Hero Section: The Reveal -->
+        <section class="hero" data-scroll-section>
+            <div class="hero-bg-wrapper">
+                <img src="royal-hero.png" alt="Royal Marble Statue" class="hero-img">
+                <div class="gold-overlay"></div>
             </div>
 
-            <!-- Product 2 -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1608248597279-f99d160bfbc8?q=80&w=2670&auto=format&fit=crop"
-                        alt="Golden Body Scrub">
-                </div>
-                <div class="product-info">
-                    <h3>Golden Berry Scrub</h3>
-                    <p class="product-price">€32.00</p>
+            <div class="hero-content">
+                <div class="hero-label">Est. 2014 • Cyprus</div>
+                <h1 class="hero-title">
+                    <span class="word">Modern</span>
+                    <span class="word">Alchemy</span>
+                    <span class="word italics">Reborn</span>
+                </h1>
+                <div class="hero-footer">
+                    <p>Grandmother's recipes, cooked to perfection.</p>
+                    <div class="scroll-indicator">
+                        <span>Scroll</span>
+                        <div class="line"></div>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Product 3 -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?q=80&w=1887&auto=format&fit=crop"
-                        alt="Rose Velvet Balm">
+        <!-- Horizontal Scroll Section: The Menu -->
+        <section class="menu-scroller" data-scroll-section>
+            <div class="scroller-track">
+                <div class="scroller-card intro-card">
+                    <h2>Our<br>Royal<br>Menu</h2>
                 </div>
-                <div class="product-info">
-                    <h3>Velvet Rose Balm</h3>
-                    <p class="product-price">€38.00</p>
+                <div class="scroller-card product-card">
+                    <div class="p-image"><img
+                            src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=1887&auto=format&fit=crop"
+                            alt="Cream"></div>
+                    <div class="p-details">
+                        <h3>Bee Ageless</h3>
+                        <p>€45.00</p>
+                    </div>
+                </div>
+                <div class="scroller-card product-card">
+                    <div class="p-image"><img
+                            src="https://images.unsplash.com/photo-1608248597279-f99d160bfbc8?q=80&w=2670&auto=format&fit=crop"
+                            alt="Scrub"></div>
+                    <div class="p-details">
+                        <h3>Golden Scrub</h3>
+                        <p>€32.00</p>
+                    </div>
+                </div>
+                <div class="scroller-card product-card">
+                    <div class="p-image"><img
+                            src="https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?q=80&w=1887&auto=format&fit=crop"
+                            alt="Balm"></div>
+                    <div class="p-details">
+                        <h3>Velvet Rose</h3>
+                        <p>€38.00</p>
+                    </div>
+                </div>
+                <div class="scroller-card quote-card">
+                    <p>"Beauty is a ritual, not a routine."</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <h2>HERMANN</h2>
-                    <p>Artisanal cosmetics cooked with love and heritage in Cyprus.</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Shop</h4>
-                    <ul>
-                        <li><a href="#">Face</a></li>
-                        <li><a href="#">Body</a></li>
-                        <li><a href="#">Gifts</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Company</h4>
-                    <ul>
-                        <li><a href="#">Our Story</a></li>
-                        <li><a href="#">Sustainability</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Social</h4>
-                    <ul>
-                        <li><a href="#">Instagram</a></li>
-                        <li><a href="#">Facebook</a></li>
-                        <li><a href="#">Pinterest</a></li>
-                    </ul>
+        <!-- Curtain Reveal Section: The Philosophy -->
+        <section class="philosophy" data-scroll-section>
+            <div class="curtain-l"></div>
+            <div class="curtain-r"></div>
+            <div class="philosophy-content">
+                <img src="velvet-bg.png" class="philo-bg" alt="Velvet">
+                <div class="philo-text">
+                    <h2>The <span class="gold-text">Golden</span> Standard</h2>
+                    <p>We blend the finest raw materials with ancient techniques. Approved by PETA, loved by skin.</p>
+                    <button class="btn-royal">Explore The Court</button>
                 </div>
             </div>
-            <div class="footer-bottom">
-                &copy; 2024 Hermann Gourmet Cosmetics. All Rights Reserved.
+        </section>
+
+        <!-- Geometric Footer -->
+        <section class="footer-royal" data-scroll-section>
+            <div class="geo-overlay"></div>
+            <h1 class="footer-title">Hermann</h1>
+            <div class="footer-links">
+                <a href="#">Instagram</a>
+                <a href="#">Shop</a>
+                <a href="#">Contact</a>
             </div>
-        </div>
-    </footer>
+        </section>
+
+    </main>
+
+    <!-- WebGL-like noise overlay -->
+    <div class="noise-overlay"></div>
 
     <script src="script.js"></script>
 </body>
